@@ -3,6 +3,9 @@ import Hero from '../Header/Hero';
 import OrganicFood from '../Products/OrganicFood';
 import Aboutus from '../About/Aboutus';
 import CategoryCard from './CategoryCard';
+import Contact from '../Contact/Contact';
+import Map from './Map';
+import Footer from './Footer';
 
 const Home = () => {
     return (
@@ -11,6 +14,9 @@ const Home = () => {
             <CategoryCard />
             <OrganicFood />
             <Aboutus />
+            <Contact />
+            <Map />
+            <Footer/>
         </div>
     );
 };
