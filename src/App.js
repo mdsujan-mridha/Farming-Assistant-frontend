@@ -9,6 +9,7 @@ import Login from './component/user/Login';
 import Footer from './component/Home/Footer';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Register from './component/user/Register';
 
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
         <Route path='/products' element={<Products />}></Route>
         <Route path='/about' element={<Aboutus />}></Route>
         <Route path='/login' element={<Login />}></Route>
+        <Route path='/register' element={<Register />}></Route>
       </Routes>
       <Footer />
     </Fragment>
