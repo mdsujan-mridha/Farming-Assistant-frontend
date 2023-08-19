@@ -5,7 +5,7 @@ import Aboutus from '../About/Aboutus';
 import CategoryCard from './CategoryCard';
 import Contact from '../Contact/Contact';
 import Map from './Map';
-import Footer from './Footer';
+
 
 const Home = () => {
     return (
@@ -16,7 +16,7 @@ const Home = () => {
             <Aboutus />
             <Contact />
             <Map />
-            <Footer/>
+            
         </div>
     );
 };

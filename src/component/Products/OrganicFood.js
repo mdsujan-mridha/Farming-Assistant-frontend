@@ -3,10 +3,7 @@ import productOne from "../images/Organic product/Product 1.jpg";
 import productTwo from "../images/Organic product/product 2.jpg";
 import productThree from "../images/Organic product/product 3.jpg";
 import productFour from "../images/Organic product/product 4.jpg";
-import productFive from "../images/Organic product/product 5.jpg";
-import productSix from "../images/Organic product/product 6.jpg";
-import productSeven from "../images/Organic product/product 7.jpg";
-import productEight from "../images/Organic product/product 8.jpg";
+
 const OrganicFood = () => {
 
     const products = [
