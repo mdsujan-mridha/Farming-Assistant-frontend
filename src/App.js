@@ -13,6 +13,8 @@ import Register from './component/user/Register';
 
 
 function App() {
+
+
   return (
     <Fragment>
       <Navbar />

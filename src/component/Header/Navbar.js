@@ -1,7 +1,26 @@
 import React from 'react';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import store from '../../store';
+import { loadUser, logout } from '../action/userAction';
+import { toast } from 'react-toastify';
 
 const Navbar = () => {
+    const dispatch = useDispatch();
+    const { isAuthenticated, user } = useSelector((state) => state.user);
+
+    const logoutUser = () => {
+        dispatch(logout());
+        toast.success("সফলভাবে আপনি logout হয়েছেন !")
+
+    }
+
+    useEffect(() => {
+        store.dispatch(loadUser());
+    }, [])
+
+
     const menuItem = [
         {
             id: 1,
@@ -51,7 +70,16 @@ const Navbar = () => {
                 </ul>
             </div>
             <div className="navbar-end">
-                <Link to="/login" className="btn btn-secondary">Login</Link>
+                {
+                    isAuthenticated === true ?
+                        <button
+                            className='btn btn-secondary'
+                            onClick={logoutUser}
+                        > Logout </button>
+                        :
+                        <Link to="/login" className="btn btn-secondary">Login</Link>
+
+                }
             </div>
         </div>
     );
