@@ -10,9 +10,13 @@ import Footer from './component/Home/Footer';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Register from './component/user/Register';
+import axios from 'axios';
+import Profile from './component/user/Profile';
 
 
 function App() {
+
+  axios.defaults.withCredentials = true;
 
 
   return (
@@ -25,6 +29,7 @@ function App() {
         <Route path='/about' element={<Aboutus />}></Route>
         <Route path='/login' element={<Login />}></Route>
         <Route path='/register' element={<Register />}></Route>
+        <Route path='profile' element={<Profile />}></Route>
       </Routes>
       <Footer />
     </Fragment>

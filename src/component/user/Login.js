@@ -29,6 +29,7 @@ const Login = () => {
         }
         if (isAuthenticated === true) {
             toast.success("You are logged in");
+            
             navigate("/")
         }
     }, [error, dispatch, isAuthenticated, navigate])
@@ -63,7 +64,7 @@ const Login = () => {
                                             <input type="submit" value="Login" className="btn btn-active btn-primary" />
                                         </form>
                                         <p className='flex justify-between items-center p-8 text-primary'>  <Link> Forgot password </Link>
-                                            <Link> No account? </Link>
+                                            <Link to="/register"> No account? </Link>
                                         </p>
                                     </div>
                                 </div>

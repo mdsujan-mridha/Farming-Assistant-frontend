@@ -40,7 +40,9 @@ const OrganicFood = () => {
                 <div className='pl-12 lg:pl-0 pt-20 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12'>
                     {
                         products?.map((item) => (
-                            <div className="card card-compact w-96 md:w-72 lg:w-64 bg-base-100 shadow-2xl" key={item?.id}>
+                            <div
+                                key={item?.id}
+                                className="card card-compact w-96 md:w-72 lg:w-64 bg-base-100 shadow-2xl">
                                 <figure className='lg:h-48 flex justify-center items-center'><img src={item?.image} alt="অর্গানিক_ফুড " className='w-full' style={{ objectFit: "cover", margin: "0 auto", width: '100%' }} /></figure>
                                 <div className="card-body pt-5">
                                     <h2 className="text-2xl font-bold"> {item?.name} </h2>
@@ -54,7 +56,7 @@ const OrganicFood = () => {
                     }
                 </div>
             </div>
-    
+
         </Fragment>
     );
 };

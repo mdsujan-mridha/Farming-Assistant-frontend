@@ -5,11 +5,12 @@ import { Link } from 'react-router-dom';
 import store from '../../store';
 import { loadUser, logout } from '../action/userAction';
 import { toast } from 'react-toastify';
+import { ListAlt, Logout, PersonOutline } from '@mui/icons-material';
 
 const Navbar = () => {
     const dispatch = useDispatch();
     const { isAuthenticated, user } = useSelector((state) => state.user);
-
+    console.log(user?.name);
     const logoutUser = () => {
         dispatch(logout());
         toast.success("সফলভাবে আপনি logout হয়েছেন !")
@@ -39,7 +40,7 @@ const Navbar = () => {
             menu: <Link to="/products">Blog</Link>
         },
         {
-            id: 4,
+            id: 5,
             menu: <Link to="/about">About us</Link>
         },
     ]
@@ -71,11 +72,20 @@ const Navbar = () => {
             </div>
             <div className="navbar-end">
                 {
-                    isAuthenticated === true ?
-                        <button
-                            className='btn btn-secondary'
-                            onClick={logoutUser}
-                        > Logout </button>
+                    user && isAuthenticated === true ?
+                        <>
+                            <div className="dropdown dropdown-bottom dropdown-end" style={{ zIndex: 9999 }}>
+                                <label tabIndex={0} className="btn m-2"> {user ? user?.name : 'Hi,user'} </label>
+                                <ul tabIndex={0} className="dropdown-content z-[1] menu p-5 shadow bg-base-100 rounded-box w-52 gap-12">
+                                    <li><Link to="/profile"><PersonOutline /> Profile</Link></li>
+                                    <li><Link><ListAlt /> Orders</Link></li>
+                                    <li> <button
+                                        onClick={logoutUser}
+                                        className='btn btn-primary flex justify-center items-center'
+                                    ><Logout /> Logout </button> </li>
+                                </ul>
+                            </div>
+                        </>
                         :
                         <Link to="/login" className="btn btn-secondary">Login</Link>
 
