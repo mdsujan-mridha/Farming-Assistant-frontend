@@ -35,7 +35,7 @@ const CategoryCard = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
                 {
                     fakeData?.map((item) => (
-                        <div className="card  bg-primary shadow-xl image-full" >
+                        <div className="card  bg-primary shadow-xl image-full" key={item?.id}>
                             <figure><img src={item?.image} alt={item?.title} /></figure>
                             <div className="card-body">
                                 <h2 className="card-title"> {item?.title} </h2>
