@@ -18,7 +18,7 @@ const Login = () => {
         e.preventDefault();
         const email = emailRef.current.value;
         const password = passwordRef.current.value;
-        console.log(email, password);
+        // console.log(email, password);
         dispatch(login(email, password));
     }
 
@@ -28,9 +28,8 @@ const Login = () => {
             dispatch(clearErrors())
         }
         if (isAuthenticated === true) {
-            toast.success("You are logged in");
-            
-            navigate("/")
+            toast.success("আপনি লগইন করছেন !!");
+            navigate("/profile")
         }
     }, [error, dispatch, isAuthenticated, navigate])
 
