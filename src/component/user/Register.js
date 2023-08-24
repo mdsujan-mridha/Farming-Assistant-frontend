@@ -29,7 +29,6 @@ const Register = () => {
         dispatch(register(myForm));
 
     }
-
     useEffect(() => {
         if (error) {
             toast.error(error);
@@ -37,7 +36,7 @@ const Register = () => {
         }
         if (isAuthenticated === true) {
             toast.success("Register successfully");
-            navigate("/");
+            navigate("/profile");
         }
     }, [dispatch, isAuthenticated, error, navigate]);
 
