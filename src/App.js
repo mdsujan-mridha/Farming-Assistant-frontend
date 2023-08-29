@@ -12,6 +12,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import Register from './component/user/Register';
 import axios from 'axios';
 import Profile from './component/user/Profile';
+import ProductDetails from './component/Products/ProductDetails';
 
 
 function App() {
@@ -30,6 +31,7 @@ function App() {
         <Route path='/login' element={<Login />}></Route>
         <Route path='/register' element={<Register />}></Route>
         <Route path='profile' element={<Profile />}></Route>
+        <Route path='/productDetails' element={<ProductDetails />}></Route>
       </Routes>
       <Footer />
     </Fragment>

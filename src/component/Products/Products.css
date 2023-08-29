@@ -1,0 +1,4 @@
+.w-auto:hover .btn {
+    display: block;
+    opacity: 1;
+}
