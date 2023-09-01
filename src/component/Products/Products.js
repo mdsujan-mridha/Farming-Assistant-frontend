@@ -11,6 +11,7 @@ import productImg7 from "../images/Organic product/product 6.jpg";
 import productImg8 from "../images/Organic product/product 7.jpg";
 import "./Products.css";
 import { Link } from 'react-router-dom';
+import Pagination from 'react-js-pagination';
 const Products = () => {
     const productCategory = [
         {
@@ -272,6 +273,23 @@ const Products = () => {
                                     </Link>
                                 ))
                             }
+
+                        </div>
+                        <div className="paginationBox">
+                            <Pagination
+                                itemsCountPerPage={10}
+                                totalItemsCount={450}
+                                pageRangeDisplayed={5}
+                                prevPageText="Prev"
+                                firstPageText="First"
+                                lastPageText="Last"
+                                itemClass='page-item'
+                                linkClass='page-link'
+                                activeClass='pageItemActive'
+                                activeLinkClass='pageLinkActive'
+                                nextPageText="Next"
+                                className="pagination"
+                            />
                         </div>
                     </div>
                 </div>
