@@ -8,13 +8,16 @@ import {
 } from "../Contact/ProductConstant"
 
 
-export const getAllProduct = (price = [0, 200], currentPage = 1) => async (dispatch) => {
+export const getAllProduct = (price = [0, 200], currentPage = 1,category) => async (dispatch) => {
 
     try {
         dispatch({
             type: ALL_PRODUCT_REQUEST
         })
-        let link = `http://localhost:5000/api/v1/products?price[gte]=${price[0]}&price[lte]=${price[1]}&page=${currentPage}`;
+       let link = `http://localhost:5000/api/v1/products?price[gte]=${price[0]}&price[lte]=${price[1]}&page=${currentPage}`;
+        if(category){
+             link = `http://localhost:5000/api/v1/products?price[gte]=${price[0]}&price[lte]=${price[1]}&page=${currentPage}&category=${category}`;
+        }
 
         const { data } = await axios.get(link);
         dispatch({
