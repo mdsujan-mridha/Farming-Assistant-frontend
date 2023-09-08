@@ -1,4 +1,4 @@
-import { LocationOn, Star } from '@mui/icons-material';
+import { Clear, LocationOn, Star, } from '@mui/icons-material';
 import { Rating, Slider } from '@mui/material';
 import React, { Fragment, useEffect, useState } from 'react';
 import "./Products.css";
@@ -11,7 +11,8 @@ import { toast } from 'react-toastify';
 const Products = () => {
 
     const dispatch = useDispatch();
-    const { loading, products, error, productCount, resultPerPage, filteredProductsCount } = useSelector((state) => state.products)
+    const { loading, products, error, productsCount, resultPerPage, filteredProductsCount } = useSelector((state) => state.products);
+    console.log(productsCount);
     const productCategory = [
         "Beans",
         "Radish",
@@ -28,7 +29,7 @@ const Products = () => {
     ]
 
     const [price, setPrice] = useState([0, 200]);
-    const [selectedCategory, setSelectedCategory] = useState(true);
+    const [category, setCategory] = useState('');
     const [currentPage, setCurrentPage] = useState(1);
     const [rating, setRating] = useState(5);
     const [keyword, setKeyword] = useState("");
@@ -38,15 +39,14 @@ const Products = () => {
 
         setPrice(newPrice);
     }
-    const handleCheckbox = (category) => {
-        setSelectedCategory(category)
-    }
+
 
     let count = filteredProductsCount;
     // pagination
 
     const setCurrentPageNo = (e) => {
         setCurrentPage(e)
+        console.log(e);
     }
 
     const handleSearch = (e) => {
@@ -58,7 +58,8 @@ const Products = () => {
     const filterProduct = products.filter((product) =>
         product.name.toLowerCase().includes(keyword.toLowerCase())
     )
-    console.log(filterProduct);
+
+    console.log(category);
     useEffect(() => {
 
         if (error) {
@@ -66,9 +67,9 @@ const Products = () => {
             toast.error(error, 'You got some error');
         }
 
-        dispatch(getAllProduct(price, currentPage))
+        dispatch(getAllProduct(price, currentPage, category))
 
-    }, [dispatch, error, price, currentPage])
+    }, [dispatch, error, price, currentPage, category])
 
     return (
         <Fragment>
@@ -98,23 +99,19 @@ const Products = () => {
                                 </div>
                                 <div className='pt-10 mt-10' style={{ borderTop: '1px solid #1c1c1c' }}>
                                     <p className='text-xl font-bold pb-5'> Category </p>
-                                    <div>
+                                    <ul>
                                         {
-                                            productCategory?.map((item) => (
-                                                <div key={item.title}>
-                                                    <input
-                                                        type="checkbox"
-                                                        name={item}
-                                                        id={item}
-                                                        onChange={() => selectedCategory === item}
-                                                        onClick={() => handleCheckbox(item)}
-                                                    />
-                                                    <label className='font-semibold pl-2 text-gray-500 text-md' htmlFor={item}>{item}</label>
-                                                </div>
+                                            productCategory.map((category, index) => (
+                                                <li
+                                                    key={index}
+                                                    onClick={() => setCategory(category)}
+                                                    className='text-lg font-bold opacity-60'
+                                                >
+                                                    {category}
+                                                </li>
                                             ))
                                         }
-
-                                    </div>
+                                    </ul>
                                 </div>
                                 <div className='pt-10 mt-10 pb-7' style={{ borderTop: "1px solid #1c1c1c", borderBottom: '1px solid #1c1c1c' }}>
                                     <p> Ratting </p>
@@ -203,35 +200,39 @@ const Products = () => {
                                     <p className='text-lg font-bold'> Found <span className='text-primary'> 200 </span> products </p>
                                     <div className='pt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 '>
                                         {
-                                            filterProduct &&
-                                            filterProduct?.map((product) => (
-                                                <Link to="/productDetails" className="w-auto h-auto bg-gray-100 rounded-lg shadow-xl relative" key={product._id}>
-                                                    <img src={product?.images[0]?.url} alt={product.name}
-                                                        className='p-1 rounded-2xl w-full h-80' />
-                                                    <div className='mt-5 px-5'>
-                                                        <div className='flex justify-between gap-5 items-center'>
-                                                            <p className='text-xl font-bold'> {product?.name} </p>
-                                                            <Rating
-                                                                style={{ color: 'orange' }}
-                                                                name='review'
-                                                                readOnly
-                                                                precision={0.5}
-                                                                value={4}
-                                                                emptyIcon={<Star style={{ opacity: 0.55 }} fontSize="inherit" />}
-                                                            />
+                                            filterProduct.length === 0 ? (
+                                                <div className='w-full h-full flex flex-row justify-center items-center'>  <p className='text-center text-2xl font-bold opacity-70'> <span> <Clear /> </span> No Product </p> </div>
+                                            ) : (
+                                                filterProduct &&
+                                                filterProduct?.map((product) => (
+                                                    <Link to="/productDetails" className="w-auto h-auto bg-gray-100 rounded-lg shadow-xl relative" key={product._id}>
+                                                        <img src={product?.images[0]?.url} alt={product.name}
+                                                            className='p-1 rounded-2xl w-full h-80' />
+                                                        <div className='mt-5 px-5'>
+                                                            <div className='flex justify-between gap-5 items-center'>
+                                                                <p className='text-xl font-bold'> {product?.name} </p>
+                                                                <Rating
+                                                                    style={{ color: 'orange' }}
+                                                                    name='review'
+                                                                    readOnly
+                                                                    precision={0.5}
+                                                                    value={4}
+                                                                    emptyIcon={<Star style={{ opacity: 0.55 }} fontSize="inherit" />}
+                                                                />
+                                                            </div>
+                                                            <p className='flex  gap-10 pt-6 text-gray-400 font-bold text-xl'> <LocationOn /> Barguna,Barishal </p>
+                                                            <div className='flex gap-3 items-center pt-7 pb-10'>
+                                                                <p className='text-lg font-extrabold text-primary'> ১২০ /- টাকা </p>
+                                                                <p className='bg-gray-400 p-2 rounded-xl px-5'> 5% </p>
+                                                                <p className='font-bold opacity-50'> <del> ১৪০ /- টাকা</del> </p>
+                                                            </div>
                                                         </div>
-                                                        <p className='flex  gap-10 pt-6 text-gray-400 font-bold text-xl'> <LocationOn /> Barguna,Barishal </p>
-                                                        <div className='flex gap-3 items-center pt-7 pb-10'>
-                                                            <p className='text-lg font-extrabold text-primary'> ১২০ /- টাকা </p>
-                                                            <p className='bg-gray-400 p-2 rounded-xl px-5'> 5% </p>
-                                                            <p className='font-bold opacity-50'> <del> ১৪০ /- টাকা</del> </p>
+                                                        <div className='pb-0 mt-10'>
+                                                            <button className='btn btn-primary w-full absolute bottom-0 left-0 hidden  transition-opacity opacity-0 delay-300'>Add to cart</button>
                                                         </div>
-                                                    </div>
-                                                    <div className='pb-0 mt-10'>
-                                                        <button className='btn btn-primary w-full absolute bottom-0 left-0 hidden  transition-opacity opacity-0 delay-300'>Add to cart</button>
-                                                    </div>
-                                                </Link>
-                                            ))
+                                                    </Link>
+                                                ))
+                                            )
                                         }
 
                                     </div>
@@ -241,8 +242,9 @@ const Products = () => {
                                                 <Pagination
                                                     activePage={currentPage}
                                                     itemsCountPerPage={resultPerPage}
-                                                    totalItemsCount={productCount}
+                                                    totalItemsCount={productsCount}
                                                     onChange={setCurrentPageNo}
+                                                    nextPageText="Next"
                                                     prevPageText="Prev"
                                                     firstPageText="First"
                                                     lastPageText="Last"
@@ -250,8 +252,6 @@ const Products = () => {
                                                     linkClass='page-link'
                                                     activeClass='pageItemActive'
                                                     activeLinkClass='pageLinkActive'
-                                                    nextPageText="Next"
-                                                    className="pagination"
                                                 />
                                             </div>
                                         )
