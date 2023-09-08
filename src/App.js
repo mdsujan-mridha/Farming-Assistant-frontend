@@ -31,7 +31,7 @@ function App() {
         <Route path='/login' element={<Login />}></Route>
         <Route path='/register' element={<Register />}></Route>
         <Route path='profile' element={<Profile />}></Route>
-        <Route path='/productDetails' element={<ProductDetails />}></Route>
+        <Route path='/products/:productId' element={<ProductDetails />}></Route>
       </Routes>
       <Footer />
     </Fragment>
