@@ -13,6 +13,7 @@ import Register from './component/user/Register';
 import axios from 'axios';
 import Profile from './component/user/Profile';
 import ProductDetails from './component/Products/ProductDetails';
+import Cart from './component/Cart/Cart';
 
 
 function App() {
@@ -32,6 +33,11 @@ function App() {
         <Route path='/register' element={<Register />}></Route>
         <Route path='profile' element={<Profile />}></Route>
         <Route path='/products/:productId' element={<ProductDetails />}></Route>
+
+
+        {/* cart will be protected route */}
+        <Route path='/cart' element={<Cart />}></Route>
+
       </Routes>
       <Footer />
     </Fragment>

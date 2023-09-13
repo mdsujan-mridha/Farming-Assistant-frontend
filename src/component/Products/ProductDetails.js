@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Rating } from '@mui/material';
 import profile from "../images/user/profile.jpg";
@@ -7,6 +7,7 @@ import { clearErrors, productDetails } from '../action/productAction';
 import Carousel from 'react-material-ui-carousel';
 import { toast } from 'react-toastify';
 import Loader from '../Layout/Loader';
+import { addItemToCart } from '../action/cartAction';
 
 
 
@@ -15,9 +16,8 @@ const ProductDetails = () => {
     const { productId } = useParams();
     const dispatch = useDispatch();
     const { loading, error, product } = useSelector((state) => state.productDetails)
-
-    console.log(product)
-
+    // state for quantity 
+    const [quantity, setQuantity] = useState(1);
 
     const options = {
         size: "large",
@@ -26,18 +26,34 @@ const ProductDetails = () => {
         name: "uncontrolled-rating"
 
     }
+    // increase quantity 
+    const increaseQuantity = () => {
+
+        if (product.Stock <= quantity) return;
+        const qty = quantity + 1;
+        setQuantity(qty);
+    }
+    const decreaseQuantity = () => {
+
+        if (1 >= quantity) return;
+        const qty = quantity - 1;
+        setQuantity(qty);
+
+    }
+
+    const addToCartHandler = () => {
+        dispatch(addItemToCart(productId, quantity))
+        toast.success("Item added to cart");
+    }
 
     useEffect(() => {
-
         if (error) {
             toast.error(error)
             dispatch(clearErrors())
         }
-
         dispatch(productDetails(productId))
 
     }, [productId, dispatch, error])
-
 
     return (
         <Fragment>
@@ -83,21 +99,28 @@ const ProductDetails = () => {
                                         <h1 className='text-4xl font-bold py-7'> BDT {product?.price} /- </h1>
                                         <div className='flex justify-start items-center border-b border-gray-500 pb-7'>
                                             <button
-                                                className='text-white font-bold text-2xl' style={{
+                                                className='text-white font-bold text-2xl'
+                                                style={{
                                                     width: 45, height: 45, backgroundColor: '#1c1c1c'
-                                                }}> - </button>
+                                                }}
+                                                onClick={decreaseQuantity}
+                                            > - </button>
                                             <input
                                                 type="number"
-                                                name=""
-                                                id=""
+                                                value={quantity}
+                                                readOnly
                                                 style={{ width: 60, height: 45, textAlign: 'center', outline: 'none' }}
                                             />
                                             <button
                                                 className='text-white font-bold text-2xl' style={{
                                                     width: 45, height: 45, backgroundColor: '#1c1c1c'
-                                                }}> + </button>
+                                                }}
+                                                onClick={increaseQuantity}
+                                            > + </button>
                                             <button
                                                 className='btn btn-primary ml-7 rounded-full text-md'
+                                                disabled={product.Stock <= 1 ? true : false}
+                                                onClick={addToCartHandler}
                                             > Add to cart </button>
                                         </div>
                                         <div className='py-7 border-b border-gray-500'>
@@ -143,9 +166,6 @@ const ProductDetails = () => {
                                     <h2 className='py-4 text-xl font-bold'> Jon Denver </h2>
                                     <p className=' text-justify font-semibold text-sm opacity-70'> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veniam deleniti similique cumque nostrum vero hic, sequi eaque laborum repellat dolorum? </p>
                                 </div>
-
-
-
                             </div>
                         </div>
 
