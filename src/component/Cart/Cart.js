@@ -2,8 +2,10 @@ import { RemoveShoppingCart } from '@mui/icons-material';
 import React, { Fragment } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { addItemToCart } from '../action/cartAction';
+import { addItemToCart, removeItemsFromCart } from '../action/cartAction';
 import CartItems from './CartItems';
+import { toast } from 'react-toastify';
+
 
 
 const Cart = () => {
@@ -18,6 +20,7 @@ const Cart = () => {
             return
         }
         dispatch(addItemToCart(productId, newQty))
+        toast.success("Update your cart quantity")
     }
     const decreaseQuantity = (productId, quantity) => {
 
@@ -26,18 +29,21 @@ const Cart = () => {
             return;
         }
         dispatch(addItemToCart(productId, newQty))
-
+        toast.success("Update your cart quantity")
     }
 
 
     const deleteCartItems = (id) => {
+
+        dispatch(removeItemsFromCart(id))
+        toast.warn("Item delete from cart")
 
     }
 
 
     return (
         <Fragment>
-
+          
             {cartItems.length === 0 ? (
                 <div className='flex flex-col justify-center items-center' style={{ width: '90%', height: '90vh', margin: '0 auto' }}>
                     <RemoveShoppingCart style={{ fontSize: '5vmax', color: 'tomato' }} />
@@ -88,7 +94,7 @@ const Cart = () => {
                             }
                             <div className='grid grid-cols-3 gap-4 full'>
                                 <div></div>
-                                <div className='flex justify-between box-border col-span-2 full' style={{margin:'1vmax 5vmax',padding:'2vmax 0',borderTop:'3px solid black' }}>
+                                <div className='flex justify-between box-border col-span-2 full' style={{ margin: '1vmax 5vmax', padding: '2vmax 0', borderTop: '3px solid black' }}>
                                     <p> Gross Total </p>
                                     <p> {`${cartItems.reduce(
                                         (acc, item) => acc + item?.quantity * item?.price, 0
@@ -96,14 +102,13 @@ const Cart = () => {
                                 </div>
                                 <div></div>
                                 <div className='flex justify-end col-span-1 items-end'>
-                                    <button className='btn btn-primary w-52 rounded-full text-white'> Check out </button>
+                                    <Link to="/shipping" className='btn btn-primary w-52 rounded-full text-white'> Check out </Link>
                                 </div>
                             </div>
                         </div>
                     </Fragment>
                 )
             }
-
         </Fragment>
     );
 };

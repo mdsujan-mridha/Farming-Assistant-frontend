@@ -1,7 +1,7 @@
 import { LoginOutlined } from '@mui/icons-material';
 import React, { Fragment, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { clearErrors, login } from '../action/userAction';
 import { toast } from 'react-toastify';
 import Loader from "../Layout/Loader";
@@ -13,6 +13,8 @@ const Login = () => {
     // get value by using ref
     const emailRef = useRef();
     const passwordRef = useRef();
+    // hook for get location 
+    const location = useLocation();
     //    function for submit value 
     const loginSubmitHandler = (e) => {
         e.preventDefault();
@@ -21,7 +23,7 @@ const Login = () => {
         // console.log(email, password);
         dispatch(login(email, password));
     }
-
+    const redirect = location.search ? location.search.split("=")[1] : "/profile";
     useEffect(() => {
         if (error) {
             toast.error(error);
@@ -29,9 +31,9 @@ const Login = () => {
         }
         if (isAuthenticated === true) {
             toast.success("আপনি লগইন করছেন !!");
-            navigate("/profile")
+            navigate(redirect)
         }
-    }, [error, dispatch, isAuthenticated, navigate])
+    }, [error, dispatch, isAuthenticated, navigate,redirect])
 
     return (
         <Fragment>
