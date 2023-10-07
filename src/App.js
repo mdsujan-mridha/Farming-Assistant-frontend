@@ -1,4 +1,4 @@
-import { Fragment, useEffect } from 'react';
+import { Fragment, useEffect, useState } from 'react';
 import './App.css';
 import { Route, Routes } from 'react-router-dom';
 import Navbar from './component/Header/Navbar';
@@ -20,17 +20,30 @@ import { useSelector } from 'react-redux';
 import store from './store';
 import { loadUser } from './component/action/userAction';
 import Shipping from './component/Cart/Shipping';
+import ConfirmOrder from './component/Cart/ConfirmOrder';
+import Payment from './component/Cart/Payment';
+import { Elements } from '@stripe/react-stripe-js';
+import { loadStripe } from '@stripe/stripe-js';
 
 
 function App() {
 
   axios.defaults.withCredentials = true;
   const { isAuthenticated } = useSelector((state) => state.user);
+  // sate for stripe 
+  const [stripeApiKey, setStripeApiKey] = useState("");
+
+
+  async function getStripeApiKey() {
+    const { data } = await axios.get("http://localhost:5000/api/v1/stripeapikey");
+    setStripeApiKey(data.stripeApiKey);
+    // console.log(data.stripeApiKey);
+  }
 
   useEffect(() => {
 
-    store.dispatch(loadUser)
-
+    store.dispatch(loadUser())
+    getStripeApiKey();
   }, [])
 
   return (
@@ -55,10 +68,21 @@ function App() {
           <Route path='/cart' element={<Cart />}></Route>
           <Route path='/profile' element={<Profile />}></Route>
           <Route path='/shipping' element={<Shipping />} ></Route>
+          <Route path='/order/confirm' element={<ConfirmOrder />} ></Route>
+          <Route>
+              {stripeApiKey && (
+                <Route
+                  path="/process/payment"
+                  element={
+                    <Elements stripe={loadStripe(stripeApiKey)} >
+                      <Payment stripeApiKey={stripeApiKey} />
+                    </Elements>
+                  }
+                >
+                </Route>
+              )}
+            </Route>
         </Route>
-
-
-
       </Routes>
       <Footer />
     </Fragment>
