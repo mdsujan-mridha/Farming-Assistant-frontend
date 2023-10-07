@@ -1,7 +1,13 @@
 import React from 'react';
 import { Fragment } from 'react';
 import profile from "../images/user/profile.jpg";
+import { useSelector } from 'react-redux';
 const Profile = () => {
+
+    const { user } = useSelector((state) => state.user);
+    // console.log(user);
+    
+
     return (
         <Fragment>
             <div className='flex lg:justify-center lg:items-center container'>
@@ -15,11 +21,11 @@ const Profile = () => {
                             <div className='flex flex-col gap-5 justify-center lg:items-center'>
                                 <div>
                                     <h1 className='text-2xl font-bold text-start'> Full Name </h1>
-                                    <p className='font-bold py-3'> Md Sujan </p>
+                                    <p className='font-bold py-3'> {user?.name} </p>
                                     <h1 className='text-2xl font-bold text-start'> Email: </h1>
-                                    <p className='font-bold py-3'> sujan@gmail.com </p>
+                                    <p className='font-bold py-3'> {user?.email}</p>
                                     <h1 className='text-2xl font-bold text-start'> Joined Date </h1>
-                                    <p className='font-bold py-3'> 12-12-2023 </p>
+                                    <p className='font-bold py-3'> {user?.createAt} </p>
                                 </div>
                             </div>
                         </div>

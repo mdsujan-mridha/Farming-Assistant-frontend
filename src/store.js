@@ -4,6 +4,7 @@ import thunk from 'redux-thunk';
 import { userReducer } from './component/reducer/userReducer';
 import { productDetailsReducer, productReducer } from './component/reducer/productReducer';
 import { cartReducer } from './component/reducer/cartReducer';
+import { postReducer } from './component/reducer/postReducer';
 
 const reducer = combineReducers({
     user: userReducer,
@@ -12,7 +13,9 @@ const reducer = combineReducers({
     // get product details 
     productDetails: productDetailsReducer,
     // add item in cart
-    cart: cartReducer
+    cart: cartReducer,
+    // post 
+    posts: postReducer,
 });
 
 
