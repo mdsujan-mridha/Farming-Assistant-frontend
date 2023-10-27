@@ -36,10 +36,6 @@ const Payment = ({ stripeApiKey }) => {
         // phoneNumber:orderInfo?.setPhoneNumber,
 
     };
-
-
-
-
     const submitHandler = async (e) => {
 
         e.preventDefault();

@@ -24,7 +24,9 @@ import ConfirmOrder from './component/Cart/ConfirmOrder';
 import Payment from './component/Cart/Payment';
 import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
+import Success from './component/Cart/Success';
 
+import 'react-multi-carousel/lib/styles.css';
 
 function App() {
 
@@ -70,18 +72,21 @@ function App() {
           <Route path='/shipping' element={<Shipping />} ></Route>
           <Route path='/order/confirm' element={<ConfirmOrder />} ></Route>
           <Route>
-              {stripeApiKey && (
-                <Route
-                  path="/process/payment"
-                  element={
-                    <Elements stripe={loadStripe(stripeApiKey)} >
-                      <Payment stripeApiKey={stripeApiKey} />
-                    </Elements>
-                  }
-                >
-                </Route>
-              )}
-            </Route>
+            {stripeApiKey && (
+              <Route
+                path="/process/payment"
+
+                element={
+                  <Elements stripe={loadStripe(stripeApiKey)} >
+                    <Payment stripeApiKey={stripeApiKey} />
+                  </Elements>
+                }
+              >
+
+              </Route>
+            )}
+          </Route>
+          <Route path='/success' element={<Success />} ></Route>
         </Route>
       </Routes>
       <Footer />

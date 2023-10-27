@@ -5,6 +5,7 @@ import Aboutus from '../About/Aboutus';
 import CategoryCard from './CategoryCard';
 import Contact from '../Contact/Contact';
 import Map from './Map';
+import FeaturedProduct from './FeaturedProduct';
 
 
 const Home = () => {
@@ -13,10 +14,11 @@ const Home = () => {
             <Hero />
             <CategoryCard />
             <OrganicFood />
+            <FeaturedProduct />
             <Aboutus />
             <Contact />
             <Map />
-            
+
         </div>
     );
 };

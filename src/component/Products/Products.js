@@ -200,7 +200,7 @@ const Products = () => {
                                     /> </div>
                                 <div className='mt-7 pt-10 bg-white rounded-lg h-full px-8'>
                                     <p className='text-lg font-bold'> Found <span className='text-primary'> 200 </span> products </p>
-                                    <div className='pt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 '>
+                                    <div className='pt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 '>
                                         {
                                             filterProduct.length === 0 ? (
                                                 <div className='w-full h-full flex flex-row justify-center items-center'>  <p className='text-center text-2xl font-bold opacity-70'> <span> <Clear /> </span> No Product </p> </div>

@@ -10,7 +10,7 @@ import { ListAlt, Logout, PersonOutline, ShoppingCart, } from '@mui/icons-materi
 const Navbar = () => {
     const dispatch = useDispatch();
     const { isAuthenticated, user } = useSelector((state) => state.user);
-    console.log(user?.name);
+    
     const logoutUser = () => {
         dispatch(logout());
         toast.success("সফলভাবে আপনি logout হয়েছেন !")
