@@ -33,7 +33,7 @@ const Navbar = () => {
         },
         {
             id: 3,
-            menu: <Link to="/products">Contact</Link>
+            menu: <Link to="/contact">Contact</Link>
         },
         {
             id: 4,
