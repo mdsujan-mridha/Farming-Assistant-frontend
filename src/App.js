@@ -27,6 +27,7 @@ import { loadStripe } from '@stripe/stripe-js';
 import Success from './component/Cart/Success';
 import 'react-multi-carousel/lib/styles.css';
 import Contact from './component/Contact/Contact';
+import Weather from './component/Weather/Weather';
 
 function App() {
 
@@ -59,6 +60,7 @@ function App() {
         <Route path='/login' element={<Login />}></Route>
         <Route path='/register' element={<Register />}></Route>
         <Route path='/contact' element={<Contact />}></Route>
+        <Route path='/weather' element={<Weather />}></Route>
         <Route path='/products/:productId' element={<ProductDetails />}></Route>
         <Route path='/post' element={<Posts />}></Route>
 

@@ -73,6 +73,15 @@ const Products = () => {
 
     }, [dispatch, error, price, currentPage, category])
 
+
+    const clearFilter = () => {
+        setPrice([0, 200]);
+        setCategory('');
+        setKeyword("");
+
+
+    }
+
     return (
         <Fragment>
             {
@@ -83,7 +92,7 @@ const Products = () => {
                             <div className='bg-white w-72 px-10 pt-10'>
                                 <div className='flex justify-between items-center'>
                                     <p className='text-xl font-bold'> Filter </p>
-                                    <button className='btn'> Reset </button>
+                                    <button onClick={()=>clearFilter()} className='btn'> Reset </button>
                                 </div>
                                 <div className='pt-10 mt-10' style={{ borderTop: '1px solid #1c1c1c' }}>
                                     <p className='text-xl font-bold'> Price </p>
@@ -202,7 +211,7 @@ const Products = () => {
                                     <p className='text-lg font-bold'> Found <span className='text-primary'> 200 </span> products </p>
                                     <div className='pt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 '>
                                         {
-                                            filterProduct.length === 0 ? (
+                                            products?.length === 0 ? (
                                                 <div className='w-full h-full flex flex-row justify-center items-center'>  <p className='text-center text-2xl font-bold opacity-70'> <span> <Clear /> </span> No Product </p> </div>
                                             ) : (
                                                 filterProduct &&

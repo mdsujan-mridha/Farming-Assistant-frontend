@@ -43,6 +43,10 @@ const Navbar = () => {
             id: 5,
             menu: <Link to="/about">About us</Link>
         },
+        {
+            id: 6,
+            menu: <Link to="/weather">Weather</Link>
+        },
     ]
     return (
         <div className="navbar bg-primary">
