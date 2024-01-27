@@ -14,7 +14,7 @@ const Products = () => {
 
     const dispatch = useDispatch();
     const { loading, products, error, productsCount, resultPerPage, filteredProductsCount } = useSelector((state) => state.products);
-    console.log(productsCount);
+    // console.log(productsCount);
     const productCategory = [
         "Beans",
         "Radish",
@@ -48,7 +48,7 @@ const Products = () => {
 
     const setCurrentPageNo = (e) => {
         setCurrentPage(e)
-        console.log(e);
+        // console.log(e);
     }
 
     const handleSearch = (e) => {
@@ -61,7 +61,7 @@ const Products = () => {
         product.name.toLowerCase().includes(keyword.toLowerCase())
     )
 
-    console.log(category);
+    // console.log(category);
     useEffect(() => {
 
         if (error) {

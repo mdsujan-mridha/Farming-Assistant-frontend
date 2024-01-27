@@ -25,8 +25,8 @@ import Payment from './component/Cart/Payment';
 import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
 import Success from './component/Cart/Success';
-
 import 'react-multi-carousel/lib/styles.css';
+import Contact from './component/Contact/Contact';
 
 function App() {
 
@@ -58,7 +58,7 @@ function App() {
         <Route path='/about' element={<Aboutus />}></Route>
         <Route path='/login' element={<Login />}></Route>
         <Route path='/register' element={<Register />}></Route>
-
+        <Route path='/contact' element={<Contact />}></Route>
         <Route path='/products/:productId' element={<ProductDetails />}></Route>
         <Route path='/post' element={<Posts />}></Route>
 
