@@ -5,12 +5,13 @@ import { Link } from 'react-router-dom';
 import store from '../../store';
 import { loadUser, logout } from '../action/userAction';
 import { toast } from 'react-toastify';
-import { ListAlt, Logout, PersonOutline, ShoppingCart, } from '@mui/icons-material';
+import { ArrowDownward, Create, ListAlt, Logout, PersonOutline, ShoppingCart, } from '@mui/icons-material';
+
 
 const Navbar = () => {
     const dispatch = useDispatch();
     const { isAuthenticated, user } = useSelector((state) => state.user);
-    
+
     const logoutUser = () => {
         dispatch(logout());
         toast.success("সফলভাবে আপনি logout হয়েছেন !")
@@ -46,6 +47,14 @@ const Navbar = () => {
         {
             id: 6,
             menu: <Link to="/weather">Weather</Link>
+        },
+        {
+            id: 7,
+            menu: <Link to="/information" className='text-white'>Information</Link>
+        },
+        {
+            id: 8,
+            menu: <Link to="/accessories">Accessories</Link>
         },
     ]
     return (
@@ -83,7 +92,8 @@ const Navbar = () => {
                                 <ul tabIndex={0} className="dropdown-content z-[1] menu p-5 shadow bg-base-100 rounded-box w-52 gap-12">
                                     <li><Link to="/profile"><PersonOutline /> Profile</Link></li>
                                     <li><Link><ListAlt /> Orders</Link></li>
-                                    <li><Link to="/cart">< ShoppingCart/> Cart </Link></li>
+                                    <li><Link to="/cart">< ShoppingCart /> Cart </Link></li>
+                                    <li><Link to="/new/product">< Create /> Sell Product </Link></li>
                                     <li> <button
                                         onClick={logoutUser}
                                         className='btn btn-primary flex justify-center items-center'

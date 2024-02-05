@@ -1,16 +1,44 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Fragment } from 'react';
 import profile from "../images/user/profile.jpg";
 import { useSelector } from 'react-redux';
+import { Button, Dialog, DialogActions, DialogContent, DialogTitle, Slide } from '@mui/material';
+
+
+const Transition = React.forwardRef(function Transition(props, ref) {
+    return <Slide direction="up" ref={ref} {...props} />;
+});
+
 const Profile = () => {
 
     const { user } = useSelector((state) => state.user);
     // console.log(user);
-    
+    const [open, setOpen] = useState(false);
+    const [name, setName] = useState("");
+    const [email, setEmail] = useState("");
+
+    // handle submit 
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        const data = {
+            name: name,
+            email: email
+        }
+        console.log(data);
+        setOpen(false);
+    }
+
+    const handleClickOpen = () => {
+        setOpen(true);
+    };
+
+    const handleClose = () => {
+        setOpen(false);
+    };
 
     return (
         <Fragment>
-            <div className='flex lg:justify-center lg:items-center container'>
+            <div className='flex lg:justify-center lg:items-center container mx-auto'>
                 <div className="mockup-browser border bg-base-300 lg:w-full" style={{ marginTop: 100 }}>
                     <div className="mockup-browser-toolbar">
                         <div className="input">http://localhost:3000/profile</div>
@@ -30,12 +58,46 @@ const Profile = () => {
                             </div>
                         </div>
                         <div className='flex flex-col w-96 gap-5 justify-start' style={{ marginTop: 50 }}>
-                            <button className='btn btn-primary'> Update Profile </button>
+                            <button onClick={handleClickOpen} className='btn btn-primary'> Update Profile </button>
                             <button className='btn btn-primary'> My orders </button>
                             <button className='btn btn-primary'> Change password </button>
                         </div>
                     </div>
                 </div>
+                <Dialog
+                    open={open}
+                    onClose={handleClose}
+                    TransitionComponent={Transition}
+                    keepMounted
+                    aria-describedby="alert-dialog-slide-description"
+                >
+                    <DialogTitle> {"Update Profile"} </DialogTitle>
+                    <DialogContent>
+                        <form
+                            onSubmit={handleSubmit}
+                            className='w-96 flex flex-col gap-5 justify-center items-center px-5'>
+                            <div>
+                                <input
+                                    onChange={(e) => setName(e.target.value)}
+                                    type="text"
+                                    placeholder='Name'
+                                    className='w-full h-14 rounded-xl border-2 outline-none px-5' />
+                            </div>
+                            <div>
+                                <input
+                                    onChange={(e) => setEmail(e.target.value)}
+                                    type="email"
+                                    placeholder='Email'
+                                    className='w-full h-14 rounded-xl border-2 outline-none px-5' />
+                            </div>
+                            <input className='w-full bg-primary text-white h-14 rounded-full' type="submit" value="Update" />
+                        </form>
+                    </DialogContent>
+                    <DialogActions
+                    >
+                        <Button onClick={handleClose}> Disagree </Button>
+                    </DialogActions>
+                </Dialog>
             </div>
         </Fragment>
     );

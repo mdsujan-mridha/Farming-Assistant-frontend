@@ -28,6 +28,12 @@ import Success from './component/Cart/Success';
 import 'react-multi-carousel/lib/styles.css';
 import Contact from './component/Contact/Contact';
 import Weather from './component/Weather/Weather';
+import Information from './component/Information/Information';
+import Accessories from './component/Accessories/Accessories';
+import InformationDetails from './component/Information/InformationDetails';
+import PostDetails from './component/post/PostDetails';
+import AccessoriesDetails from './component/Accessories/AccessoriesDetails';
+import NewProduct from './component/Products/NewProduct';
 
 function App() {
 
@@ -63,7 +69,11 @@ function App() {
         <Route path='/weather' element={<Weather />}></Route>
         <Route path='/products/:productId' element={<ProductDetails />}></Route>
         <Route path='/post' element={<Posts />}></Route>
-
+        <Route path='/post/details' element={<PostDetails />}></Route>
+        <Route path='/information' element={<Information />}></Route>
+        <Route path='/information/details' element={<InformationDetails />}></Route>
+        <Route path="/accessories" element={<Accessories />}></Route>
+        <Route path='/accessories/:id' element={<AccessoriesDetails />}></Route>
         {/* cart will be protected route */}
 
         {/* protected route for user */}
@@ -73,6 +83,7 @@ function App() {
           <Route path='/profile' element={<Profile />}></Route>
           <Route path='/shipping' element={<Shipping />} ></Route>
           <Route path='/order/confirm' element={<ConfirmOrder />} ></Route>
+          <Route path='/new/product' element={<NewProduct />}></Route>
           <Route>
             {stripeApiKey && (
               <Route
@@ -92,7 +103,7 @@ function App() {
         </Route>
       </Routes>
       <Footer />
-    </Fragment>
+    </Fragment >
   );
 }
 
