@@ -15,7 +15,7 @@ const ProductList = () => {
     const dispatch = useDispatch();
     const { error, products } = useSelector((state) => state.products)
 
-    console.log(products);
+    // console.log(products);
     const navigate = useNavigate();
 
     useEffect(() => {

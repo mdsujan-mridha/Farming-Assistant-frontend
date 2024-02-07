@@ -22,7 +22,7 @@ const Sidebar = () => {
 
                 >
                     <TreeItem nodeId="1" label="Products">
-                        <Link to="/admin/new-book">
+                        <Link to="/admin/product">
                             <TreeItem nodeId="2" label="Add" icon={<Add />} />
                         </Link>
                         <Link to="/admin/products">
@@ -35,11 +35,14 @@ const Sidebar = () => {
                     </TreeItem>
 
                     <TreeItem nodeId="25" label="User">
-                        <TreeItem nodeId="23" label="Users" icon={<VerifiedUser />} />
+                        <Link to="/admin/users">
+                            <TreeItem nodeId="23" label="Users" icon={<VerifiedUser />} />
+                        </Link>
                     </TreeItem>
                     <TreeItem nodeId="35" label="Orders">
-                        <TreeItem nodeId="33" label="Add" icon={<Add />} />
-                        <TreeItem nodeId="36" label="All" icon={<PostAdd />} />
+                        <Link to="/admin/orders">
+                            <TreeItem nodeId="36" label="All" icon={<PostAdd />} />
+                        </Link>
                     </TreeItem>
                     <TreeItem nodeId="15" label="Blog">
                         <TreeItem nodeId="13" label="Add Blog" icon={<Add />} />
