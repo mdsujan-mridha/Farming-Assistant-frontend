@@ -34,6 +34,8 @@ import InformationDetails from './component/Information/InformationDetails';
 import PostDetails from './component/post/PostDetails';
 import AccessoriesDetails from './component/Accessories/AccessoriesDetails';
 import NewProduct from './component/Products/NewProduct';
+import Dashboard from './component/Admin/Dashboard';
+import ProductList from './component/Admin/ProductList';
 
 function App() {
 
@@ -88,19 +90,21 @@ function App() {
             {stripeApiKey && (
               <Route
                 path="/process/payment"
-
                 element={
                   <Elements stripe={loadStripe(stripeApiKey)} >
                     <Payment stripeApiKey={stripeApiKey} />
                   </Elements>
                 }
               >
-
               </Route>
             )}
           </Route>
           <Route path='/success' element={<Success />} ></Route>
         </Route>
+
+        {/* this route for admin  */}
+        <Route path='/admin/dashboard' element={<Dashboard />}></Route>
+        <Route path='/admin/products' element={<ProductList />}></Route>
       </Routes>
       <Footer />
     </Fragment >
