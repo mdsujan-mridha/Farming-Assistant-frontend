@@ -44,6 +44,9 @@ import OrderList from './component/Admin/OrderList';
 import OrderProcess from './component/Admin/OrderProcess';
 import OrderDetails from './component/Order/OrderDetails';
 import Myorder from './component/Order/Myorder';
+import PostList from './component/Admin/PostList';
+import UpdatePost from './component/Admin/UpdatePost';
+import NewPost from './component/Admin/NewPost';
 
 function App() {
 
@@ -79,7 +82,7 @@ function App() {
         <Route path='/weather' element={<Weather />}></Route>
         <Route path='/products/:productId' element={<ProductDetails />}></Route>
         <Route path='/post' element={<Posts />}></Route>
-        <Route path='/post/details' element={<PostDetails />}></Route>
+        <Route path='/post/:id' element={<PostDetails />}></Route>
         <Route path='/information' element={<Information />}></Route>
         <Route path='/information/details' element={<InformationDetails />}></Route>
         <Route path="/accessories" element={<Accessories />}></Route>
@@ -213,6 +216,42 @@ function App() {
           }
         ></Route>
 
+        <Route
+          path="/admin/post"
+          element={
+            <ProtectedRoute
+              isAuthenticated={isAuthenticated}
+              adminRoute={true}
+              isAdmin={user?.role === "admin" ? true : false}
+            >
+              <PostList />
+            </ProtectedRoute>
+          }
+        ></Route>
+        <Route
+          path="/admin/post/:id"
+          element={
+            <ProtectedRoute
+              isAuthenticated={isAuthenticated}
+              adminRoute={true}
+              isAdmin={user?.role === "admin" ? true : false}
+            >
+              <UpdatePost />
+            </ProtectedRoute>
+          }
+        ></Route>
+        <Route
+          path="/admin/post/new"
+          element={
+            <ProtectedRoute
+              isAuthenticated={isAuthenticated}
+              adminRoute={true}
+              isAdmin={user?.role === "admin" ? true : false}
+            >
+              <NewPost />
+            </ProtectedRoute>
+          }
+        ></Route>
       </Routes>
       <Footer />
     </Fragment >

@@ -4,7 +4,7 @@ import thunk from 'redux-thunk';
 import { allUserReducer, profileReducer, userDetailsReducer, userReducer } from './component/reducer/userReducer';
 import { newProductReducer, productDetailsReducer, productReducer, updateProductReducer } from './component/reducer/productReducer';
 import { cartReducer } from './component/reducer/cartReducer';
-import { postReducer } from './component/reducer/postReducer';
+import { newPostReducer, postDetails, postReducer, updatePostReducer } from './component/reducer/postReducer';
 import { allOrdersReducer, myOrdersReducer, newOrderReducer, orderDetailsReducer, orderReducer } from './component/reducer/orderReducer';
 
 const reducer = combineReducers({
@@ -18,6 +18,9 @@ const reducer = combineReducers({
     cart: cartReducer,
     // post 
     posts: postReducer,
+    postDetails: postDetails,
+    post: updatePostReducer,
+    newPost: newPostReducer,
     // update and delete
     product: updateProductReducer,
     newProduct: newProductReducer,

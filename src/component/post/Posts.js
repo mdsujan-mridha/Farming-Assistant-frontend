@@ -1,7 +1,13 @@
-import React, { Fragment, useState } from 'react';
-
-import postImg from "../images/Organic product/Product 1.jpg";
+import React, { Fragment, useEffect, useState } from 'react';
 import PostCard from './PostCard';
+import { useDispatch, useSelector } from 'react-redux';
+import { clearErrors, getPost } from '../action/postAction';
+import Pagination from 'react-js-pagination';
+import { Typography } from '@mui/material';
+import Loader from '../Layout/Loader';
+import MetaData from '../Layout/MetaData';
+import "./Posts.css";
+import { toast } from 'react-toastify';
 
 const productCategory = [
     "Beans",
@@ -15,85 +21,117 @@ const productCategory = [
     "Lemon",
     "Carrot",
     "Tomato",
-    "Pumpkin",
-]
-
-const fakeData = [
-    {
-        _id: 1,
-        title: "How to grow a corn",
-        metaDescription: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quo. Lorem ipsum dolor sit amet consectetur adipisicing elit",
-        description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quo. Lorem ipsum dolor sit amet consectetur adipisicing elit",
-        category: "Corn",
-        images: postImg,
-        user: 'sujan'
-    },
-    {
-        _id: 2,
-        title: "How to grow a corn",
-        metaDescription: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quo. Lorem ipsum dolor sit amet consectetur adipisicing elit",
-        description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quo. Lorem ipsum dolor sit amet consectetur adipisicing elit",
-        category: "Corn",
-        images: postImg,
-        user: 'sujan'
-    },
-    {
-        _id: 3,
-        title: "How to grow a corn",
-        metaDescription: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quo. Lorem ipsum dolor sit amet consectetur adipisicing elit",
-        description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quo. Lorem ipsum dolor sit amet consectetur adipisicing elit",
-        category: "Corn",
-        images: postImg,
-        user: 'sujan'
-    },
-    {
-        _id: 4,
-        title: "How to grow a corn",
-        metaDescription: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quo. Lorem ipsum dolor sit amet consectetur adipisicing elit",
-        description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quo. Lorem ipsum dolor sit amet consectetur adipisicing elit",
-        category: "Corn",
-        images: postImg,
-        user: 'sujan'
-    },
 
 ]
+
 
 const Posts = () => {
+    const dispatch = useDispatch();
+    const [currentPage, setCurrentPage] = useState(1);
     const [category, setCategory] = useState('');
+
+    const {
+        loading,
+        posts,
+        error,
+        postCount,
+        resultPerPage,
+        filteredPostCount
+
+
+    } = useSelector((state) => state.posts)
+
+    useEffect(() => {
+        if (error) {
+            toast.error(error)
+            dispatch(clearErrors())
+        }
+
+        dispatch(getPost(currentPage, category))
+
+    }, [dispatch, currentPage, category, error])
+
+    let count = filteredPostCount;
+    // console.log(filteredProductsCount);
+
+    //  pagination 
+    const setCurrentPageNo = (e) => {
+        setCurrentPage(e)
+    }
+
+    // console.log(posts);
+
+    const handleReset = () => {
+        setCategory("")
+        setCurrentPage("")
+    }
 
     return (
         <Fragment>
-            <div className='flex flex-col lg:flex-row  min-h-screen px-12'>
-                <div className='w-full lg:w-1/12'>
-                    <div className='pt-10 mt-10' style={{ borderTop: '1px solid #1c1c1c' }}>
-                        <p className='text-xl font-bold pb-5'> Category </p>
-                        <ul>
+            {
+                loading ? (
+                    <Loader />
+                ) :
+                    (
+                        <Fragment>
+                            <MetaData title={"Product page"} />
+                            <h2 className='productsHeading'> All Blog  </h2>
+                            <div className="products">
+                                {
+                                    posts &&
+                                    posts?.map((item) => (
+                                        <PostCard
+                                            key={item?._id}
+                                            item={item}
+                                        />
+                                    ))
+                                }
+                            </div>
+
+                            {/* filter product  */}
+                            <div className="filterBox">
+                                <div className='flex justify-between items-center my-5'> <h1> Filter </h1> <button
+                                    onClick={handleReset}
+                                    className='btn'> Reset </button> </div>
+                                <Typography> Filter by Category </Typography>
+                                <ul className='categoryBox'>
+                                    {
+                                        productCategory.map((category) => (
+                                            <li
+                                                className='category-link'
+                                                key={category}
+                                                onClick={() => setCategory(category)}
+                                            >
+                                                {category}
+                                            </li>
+                                        ))
+                                    }
+                                </ul>
+                            </div>
                             {
-                                productCategory.map((category, index) => (
-                                    <li
-                                        key={index}
-                                        onClick={() => setCategory(category)}
-                                        className='text-lg font-bold opacity-60'
-                                    >
-                                        {category}
-                                    </li>
-                                ))
+                                resultPerPage < count && (
+                                    <div className='paginationBox'>
+                                        <Pagination
+                                            activePage={currentPage}
+
+                                            itemsCountPerPage={resultPerPage}
+                                            totalItemsCount={postCount}
+                                            onChange={setCurrentPageNo}
+                                            nextPageText="Next"
+                                            prevPageText="Prev"
+                                            firstPageText="First"
+                                            lastPageText="Last"
+                                            itemClass='page-item'
+                                            linkClass='page-link'
+                                            activeClass='pageItemActive'
+                                            activeLinkClass='pageLinkActive'
+                                        ></Pagination>
+                                    </div>
+                                )
                             }
-                        </ul>
-                    </div>
-                </div>
-                <div className='w-full lg:w-4/5'>
-                    {
-                        fakeData &&
-                        fakeData.map((item) => (
-                            <PostCard
-                                key={item._id}
-                                item={item}
-                            />
-                        ))
-                    }
-                </div>
-            </div>
+                        </Fragment>
+                    )
+            }
         </Fragment>
     );
 };
