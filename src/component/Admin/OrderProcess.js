@@ -34,7 +34,7 @@ const OrderProcess = () => {
         // const myForm = new FormData();
         // myForm.set("status", status);
         const formData = {
-            status
+            status:status
         };
         dispatch(updateOrder(id, formData));
 

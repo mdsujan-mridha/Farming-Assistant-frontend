@@ -47,6 +47,7 @@ import Myorder from './component/Order/Myorder';
 import PostList from './component/Admin/PostList';
 import UpdatePost from './component/Admin/UpdatePost';
 import NewPost from './component/Admin/NewPost';
+import SellNewProduct from './component/user/SellNewProduct';
 
 function App() {
 
@@ -63,8 +64,7 @@ function App() {
   }
 
   useEffect(() => {
-
-    store.dispatch(loadUser())
+    store.dispatch(loadUser());
     getStripeApiKey();
   }, [])
 
@@ -98,7 +98,7 @@ function App() {
           <Route path='/order/confirm' element={<ConfirmOrder />} ></Route>
           <Route path='/orders' element={<Myorder />}></Route>
           <Route path='/order/:id' element={<OrderDetails />}></Route>
-          {/* <Route path='/new/product' element={<NewProduct />}></Route> */}
+          <Route path='/new/product' element={<SellNewProduct />}></Route>
           <Route>
             {stripeApiKey && (
               <Route
