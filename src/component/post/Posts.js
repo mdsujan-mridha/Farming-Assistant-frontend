@@ -10,18 +10,11 @@ import "./Posts.css";
 import { toast } from 'react-toastify';
 
 const productCategory = [
-    "Beans",
-    "Radish",
-    "Cauliflower",
-    "Cabbage",
-    "Pumpkin",
-    "Capsicum",
-    "Pea",
-    "Haicha",
-    "Lemon",
-    "Carrot",
-    "Tomato",
-
+    "Disease",
+    "Cultivation",
+    "roofGarden",
+    "AgriInformation",
+    "Modern Agriculture"
 ]
 
 
@@ -75,7 +68,7 @@ const Posts = () => {
                     (
                         <Fragment>
                             <MetaData title={"Product page"} />
-                            <h2 className='productsHeading'> All Blog  </h2>
+                            <h2 className='productsHeading'> All Information  </h2>
                             <div className="products">
                                 {
                                     posts &&

@@ -108,17 +108,19 @@ export const deletePost = (id) => async (dispatch) => {
     }
 
 }
+
+
 // create new product by admin 
 export const createPost = (productData) => async (dispatch) => {
 
     try {
         dispatch({ type: NEW_POST_REQUEST })
-        //   const config = {
-        //     headers:{
-        //         "Content-type":"application/json"
-        //     }
-        //   }
-        const data = await axios.post(`http://localhost:5000/api/v1/admin/post/new`, productData)
+          const config = {
+            headers:{
+                "Content-type":"application/json"
+            }
+          }
+        const data = await axios.post(`http://localhost:5000/api/v1/admin/post/new`, productData,config)
         dispatch({
             type: NEW_POST_SUCCESS,
             payload: data

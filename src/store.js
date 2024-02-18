@@ -6,6 +6,7 @@ import { newProductReducer, productDetailsReducer, productReducer, updateProduct
 import { cartReducer } from './component/reducer/cartReducer';
 import { newPostReducer, postDetails, postReducer, updatePostReducer } from './component/reducer/postReducer';
 import { allOrdersReducer, myOrdersReducer, newOrderReducer, orderDetailsReducer, orderReducer } from './component/reducer/orderReducer';
+import { newVideoReducer, updateVideoReducer, videosReducer } from './component/reducer/videoReducer';
 
 const reducer = combineReducers({
     user: userReducer,
@@ -31,6 +32,9 @@ const reducer = combineReducers({
     orderDetails: orderDetailsReducer,
     allOrder: allOrdersReducer,
     order: orderReducer,
+    videos: videosReducer,
+    video: updateVideoReducer,
+    newVideo: newVideoReducer
 });
 
 

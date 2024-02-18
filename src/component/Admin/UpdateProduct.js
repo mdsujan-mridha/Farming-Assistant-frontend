@@ -10,13 +10,18 @@ import { UPDATE_PRODUCT_RESET } from '../constant/ProductConstant';
 import "./NewProduct.css";
 
 const categories = [
-    "Laptop",
-    "Footwear",
-    "Bottom",
-    "Tops",
-    "Attire",
-    "Camera",
-    "SmartPhones",
+    "Beans",
+    "Radish",
+    "Cauliflower",
+    "Cabbage",
+    "Pumpkin",
+    "Capsicum",
+    "Pea",
+    "Haicha",
+    "Lemon",
+    "Carrot",
+    "Tomato",
+    "Accessories"
 ];
 
 const UpdateProduct = () => {
@@ -66,17 +71,16 @@ const UpdateProduct = () => {
     // update product handler 
     const updateProductHandlerSubmit = (e) => {
         e.preventDefault();
-        const myForm = new FormData();
+        const myForm = {
+            name,
+            description,
+            price,
+            Stock,
+            category,
+            images
+        };
 
-        myForm.set("name", name);
-        myForm.set("price", price);
-        myForm.set("description", description);
-        myForm.set("category", category);
-        myForm.set("Stock", Stock);
 
-        images.forEach((image) => {
-            myForm.append("images", image);
-        });
         dispatch(updateProduct(productId, myForm));
 
     }

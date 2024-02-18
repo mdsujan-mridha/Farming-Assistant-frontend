@@ -38,7 +38,7 @@ const Navbar = () => {
         },
         {
             id: 4,
-            menu: <Link to="/post">Blog</Link>
+            menu: <Link to="/post">Information</Link>
         },
         {
             id: 5,
@@ -50,12 +50,9 @@ const Navbar = () => {
         },
         {
             id: 7,
-            menu: <Link to="/information" className='text-white'>Information</Link>
+            menu: <Link to="/videoContent" className='text-white'>Agri-School</Link>
         },
-        {
-            id: 8,
-            menu: <Link to="/accessories">Accessories</Link>
-        },
+    
     ]
     return (
         <div className="navbar bg-primary">

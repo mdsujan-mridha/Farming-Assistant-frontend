@@ -28,6 +28,7 @@ const Products = () => {
         "Carrot",
         "Tomato",
         "Pumpkin",
+        "Accessories"
     ]
 
     const [price, setPrice] = useState([0, 200]);

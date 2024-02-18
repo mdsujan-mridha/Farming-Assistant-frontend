@@ -17,7 +17,7 @@ const NewPost = () => {
     const { error, loading, success } = useSelector((state) => state.newPost);
     const navigate = useNavigate()
     const [title, setTitle] = useState("");
-    const [price, setPrice] = useState(0);
+
     const [description, setDescription] = useState("");
     const [category, setCategory] = useState("");
     const [metaDescription, setMetaDescription] = useState("")
@@ -26,13 +26,11 @@ const NewPost = () => {
     console.log(success);
     // set category 
     const categories = [
-        "Laptop",
-        "Footwear",
-        "Bottom",
-        "Tops",
-        "Attire",
-        "Camera",
-        "SmartPhones",
+        "Disease",
+        "Cultivation",
+        "roofGarden",
+        "AgriInformation",
+        "Modern Agriculture"
     ];
 
     useEffect(() => {
@@ -50,19 +48,17 @@ const NewPost = () => {
     }, [dispatch, error, success, navigate])
 
     const createProductSubmitHandler = (e) => {
-        e.preventDefault()
-        const myForm = new FormData()
-        myForm.set("name", title);
-        myForm.set("price", price);
-        myForm.set("description", description);
-        myForm.set("category", category);
-        myForm.append("metaDescription", metaDescription)
-        images.forEach((image) => {
-            myForm.append("images", image);
-        });
+        e.preventDefault();
+
+        const myForm = {
+            title: title,
+            metaDescription: metaDescription,
+            description: description,
+            category: category,
+            images: images
+        }
         dispatch(createPost(myForm));
-
-
+        console.log(myForm);
     }
 
     const createProductImagesChange = (e) => {
@@ -108,15 +104,7 @@ const NewPost = () => {
                                 onChange={(e) => setTitle(e.target.value)}
                             />
                         </div>
-                        <div>
-                            <AttachMoney />
-                            <input
-                                type="number"
-                                placeholder="Price"
-                                required
-                                onChange={(e) => setPrice(e.target.value)}
-                            />
-                        </div>
+
 
                         <div>
                             <Description />
@@ -133,7 +121,7 @@ const NewPost = () => {
                             <Description />
 
                             <textarea
-                                placeholder="Post Description"
+                                placeholder="Meta Description"
                                 value={metaDescription}
                                 onChange={(e) => setMetaDescription(e.target.value)}
                                 cols="30"

@@ -11,13 +11,19 @@ import "./NewProduct.css";
 
 // set category 
 const categories = [
-    "Laptop",
-    "Footwear",
-    "Bottom",
-    "Tops",
-    "Attire",
-    "Camera",
-    "SmartPhones",
+    "Beans",
+    "Radish",
+    "Cauliflower",
+    "Cabbage",
+    "Pumpkin",
+    "Capsicum",
+    "Pea",
+    "Haicha",
+    "Lemon",
+    "Carrot",
+    "Tomato",
+    "Pumpkin",
+    "Accessories"
 ];
 
 const NewProduct = () => {
@@ -49,20 +55,19 @@ const NewProduct = () => {
     }, [dispatch, error, success, navigate])
 
     const createProductSubmitHandler = (e) => {
-        e.preventDefault()
-        const myForm = new FormData()
-        myForm.set("name", name);
-        myForm.set("price", price);
-        myForm.set("description", description);
-        myForm.set("category", category);
-        myForm.set("Stock", Stock);
-        images.forEach((image) => {
-            myForm.append("images", image);
-        });
-        dispatch(createProduct(myForm));
-
-
+        e.preventDefault();
+        const productData = {
+            name,
+            price,
+            description,
+            category,
+            Stock,
+            images
+        };
+        console.log(productData);
+        dispatch(createProduct(productData));
     }
+
 
     const createProductImagesChange = (e) => {
         const files = Array.from(e.target.files);

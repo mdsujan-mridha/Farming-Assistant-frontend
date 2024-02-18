@@ -58,14 +58,13 @@ const Weather = () => {
         else if (weatherData.weather && (weatherData.weather[0].icon === "13d" || weatherData.weather[0].icon === "13n")) {
             setWinIcon(snow_icon);
         }
-
         else if (weatherData.weather && (weatherData.weather[0].icon === "50d" || weatherData.weather[0].icon === "50n")) {
             setWinIcon(drizzle_icon);
         }
 
     }, [location, weatherData.weather])
 
-    console.log(weatherData);
+    // console.log(weatherData);
 
 
     return (

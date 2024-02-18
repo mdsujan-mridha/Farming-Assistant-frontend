@@ -48,6 +48,7 @@ import PostList from './component/Admin/PostList';
 import UpdatePost from './component/Admin/UpdatePost';
 import NewPost from './component/Admin/NewPost';
 import SellNewProduct from './component/user/SellNewProduct';
+import Videos from './component/Videos/Videos';
 
 function App() {
 
@@ -83,7 +84,7 @@ function App() {
         <Route path='/products/:productId' element={<ProductDetails />}></Route>
         <Route path='/post' element={<Posts />}></Route>
         <Route path='/post/:id' element={<PostDetails />}></Route>
-        <Route path='/information' element={<Information />}></Route>
+        <Route path='/videoContent' element={<Videos />}></Route>
         <Route path='/information/details' element={<InformationDetails />}></Route>
         <Route path="/accessories" element={<Accessories />}></Route>
         <Route path='/accessories/:id' element={<AccessoriesDetails />}></Route>
