@@ -25,13 +25,37 @@ import Payment from './component/Cart/Payment';
 import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
 import Success from './component/Cart/Success';
-
 import 'react-multi-carousel/lib/styles.css';
+import Contact from './component/Contact/Contact';
+import Weather from './component/Weather/Weather';
+import Accessories from './component/Accessories/Accessories';
+import InformationDetails from './component/Information/InformationDetails';
+import PostDetails from './component/post/PostDetails';
+import AccessoriesDetails from './component/Accessories/AccessoriesDetails';
+
+import Dashboard from './component/Admin/Dashboard';
+import ProductList from './component/Admin/ProductList';
+import UpdateProduct from './component/Admin/UpdateProduct';
+import NewProduct from './component/Admin/NewProduct';
+import UserList from './component/Admin/UserList';
+import UpdateUser from './component/Admin/UpdateUser';
+import OrderList from './component/Admin/OrderList';
+import OrderProcess from './component/Admin/OrderProcess';
+import OrderDetails from './component/Order/OrderDetails';
+import Myorder from './component/Order/Myorder';
+import PostList from './component/Admin/PostList';
+import UpdatePost from './component/Admin/UpdatePost';
+import NewPost from './component/Admin/NewPost';
+import SellNewProduct from './component/user/SellNewProduct';
+import Videos from './component/Videos/Videos';
+import UserDashboard from './component/user/UserDashboard';
+import UserOrder from './component/user/UserOrder';
+import UpdateProfile from './component/user/UpdateProfile';
 
 function App() {
 
   axios.defaults.withCredentials = true;
-  const { isAuthenticated } = useSelector((state) => state.user);
+  const { isAuthenticated, user } = useSelector((state) => state.user);
   // sate for stripe 
   const [stripeApiKey, setStripeApiKey] = useState("");
 
@@ -43,8 +67,7 @@ function App() {
   }
 
   useEffect(() => {
-
-    store.dispatch(loadUser())
+    store.dispatch(loadUser());
     getStripeApiKey();
   }, [])
 
@@ -58,9 +81,15 @@ function App() {
         <Route path='/about' element={<Aboutus />}></Route>
         <Route path='/login' element={<Login />}></Route>
         <Route path='/register' element={<Register />}></Route>
-
+        <Route path='/contact' element={<Contact />}></Route>
+        <Route path='/weather' element={<Weather />}></Route>
         <Route path='/products/:productId' element={<ProductDetails />}></Route>
         <Route path='/post' element={<Posts />}></Route>
+        <Route path='/post/:id' element={<PostDetails />}></Route>
+        <Route path='/videoContent' element={<Videos />}></Route>
+        <Route path='/information/details' element={<InformationDetails />}></Route>
+        <Route path="/accessories" element={<Accessories />}></Route>
+        <Route path='/accessories/:id' element={<AccessoriesDetails />}></Route>
 
         {/* cart will be protected route */}
 
@@ -68,29 +97,170 @@ function App() {
 
         <Route element={<ProtectedRoute isAuthenticated={isAuthenticated} />}>
           <Route path='/cart' element={<Cart />}></Route>
-          <Route path='/profile' element={<Profile />}></Route>
+          <Route path='/profile' element={<UserDashboard />}></Route>
           <Route path='/shipping' element={<Shipping />} ></Route>
           <Route path='/order/confirm' element={<ConfirmOrder />} ></Route>
+          <Route path='/orders' element={<UserOrder />}></Route>
+          <Route path='/order/:id' element={<OrderDetails />}></Route>
+          <Route path='/new/product' element={<SellNewProduct />}></Route>
           <Route>
             {stripeApiKey && (
               <Route
                 path="/process/payment"
-
                 element={
                   <Elements stripe={loadStripe(stripeApiKey)} >
                     <Payment stripeApiKey={stripeApiKey} />
                   </Elements>
                 }
               >
-
               </Route>
             )}
           </Route>
           <Route path='/success' element={<Success />} ></Route>
+          <Route path='/user/dashboard' element={<UserDashboard />} />
+          <Route path='/update-profile' element={<UpdateProfile />}></Route>
         </Route>
+
+        {/* this route for admin  */}
+        <Route
+          path="/admin/dashboard"
+          element={
+            <ProtectedRoute
+              isAuthenticated={isAuthenticated}
+              adminRoute={true}
+              isAdmin={user?.role === "admin" ? true : false}
+            >
+              <Dashboard />
+            </ProtectedRoute>
+          }
+        ></Route>
+        <Route
+          path="/admin/products"
+          element={
+            <ProtectedRoute
+              isAuthenticated={isAuthenticated}
+              adminRoute={true}
+              isAdmin={user?.role === "admin" ? true : false}
+            >
+              <ProductList />
+            </ProtectedRoute>
+          }
+        ></Route>
+        <Route
+          path="/admin/product/:id"
+          element={
+            <ProtectedRoute
+              isAuthenticated={isAuthenticated}
+              adminRoute={true}
+              isAdmin={user?.role === "admin" ? true : false}
+            >
+              <UpdateProduct />
+            </ProtectedRoute>
+          }
+        ></Route>
+        <Route
+          path="/admin/product"
+          element={
+            <ProtectedRoute
+              isAuthenticated={isAuthenticated}
+              adminRoute={true}
+              isAdmin={user?.role === "admin" ? true : false}
+            >
+              <NewProduct />
+            </ProtectedRoute>
+          }
+        ></Route>
+
+        <Route
+          path="/admin/users"
+          element={
+            <ProtectedRoute
+              isAuthenticated={isAuthenticated}
+              adminRoute={true}
+              isAdmin={user?.role === "admin" ? true : false}
+            >
+              <UserList />
+            </ProtectedRoute>
+          }
+        ></Route>
+        <Route
+          path="/admin/user/:id"
+          element={
+            <ProtectedRoute
+              isAuthenticated={isAuthenticated}
+              adminRoute={true}
+              isAdmin={user?.role === "admin" ? true : false}
+            >
+              <UpdateUser />
+            </ProtectedRoute>
+          }
+        ></Route>
+
+        <Route
+          path="/admin/orders"
+          element={
+            <ProtectedRoute
+              isAuthenticated={isAuthenticated}
+              adminRoute={true}
+              isAdmin={user?.role === "admin" ? true : false}
+            >
+              <OrderList />
+            </ProtectedRoute>
+          }
+        ></Route>
+
+        <Route
+          path="/admin/order/:id"
+          element={
+            <ProtectedRoute
+              isAuthenticated={isAuthenticated}
+              adminRoute={true}
+              isAdmin={user?.role === "admin" ? true : false}
+            >
+              <OrderProcess />
+            </ProtectedRoute>
+          }
+        ></Route>
+
+        <Route
+          path="/admin/post"
+          element={
+            <ProtectedRoute
+              isAuthenticated={isAuthenticated}
+              adminRoute={true}
+              isAdmin={user?.role === "admin" ? true : false}
+            >
+              <PostList />
+            </ProtectedRoute>
+          }
+        ></Route>
+        <Route
+          path="/admin/post/:id"
+          element={
+            <ProtectedRoute
+              isAuthenticated={isAuthenticated}
+              adminRoute={true}
+              isAdmin={user?.role === "admin" ? true : false}
+            >
+              <UpdatePost />
+            </ProtectedRoute>
+          }
+        ></Route>
+        <Route
+          path="/admin/post/new"
+          element={
+            <ProtectedRoute
+              isAuthenticated={isAuthenticated}
+              adminRoute={true}
+              isAdmin={user?.role === "admin" ? true : false}
+            >
+              <NewPost />
+            </ProtectedRoute>
+          }
+        ></Route>
       </Routes>
       <Footer />
-    </Fragment>
+    </Fragment >
   );
 }
 

@@ -5,12 +5,13 @@ import { Link } from 'react-router-dom';
 import store from '../../store';
 import { loadUser, logout } from '../action/userAction';
 import { toast } from 'react-toastify';
-import { ListAlt, Logout, PersonOutline, ShoppingCart, } from '@mui/icons-material';
+import {Create, Dashboard, Logout, ShoppingCart, } from '@mui/icons-material';
+
 
 const Navbar = () => {
     const dispatch = useDispatch();
     const { isAuthenticated, user } = useSelector((state) => state.user);
-    
+
     const logoutUser = () => {
         dispatch(logout());
         toast.success("সফলভাবে আপনি logout হয়েছেন !")
@@ -25,24 +26,33 @@ const Navbar = () => {
     const menuItem = [
         {
             id: 1,
-            menu: <Link to="/">Home</Link>
+            menu: <Link to="/">হোম</Link>
         },
         {
             id: 2,
-            menu: <Link to="/products">Products</Link>
+            menu: <Link to="/products"> পণ্য </Link>
         },
         {
             id: 3,
-            menu: <Link to="/contact">Contact</Link>
+            menu: <Link to="/contact">যোগাযোগ</Link>
         },
         {
             id: 4,
-            menu: <Link to="/post">Blog</Link>
+            menu: <Link to="/post"> তথ্যকনিকা </Link>
         },
         {
             id: 5,
-            menu: <Link to="/about">About us</Link>
+            menu: <Link to="/about"> আমাদের সম্পর্কে জানুন </Link>
         },
+        {
+            id: 6,
+            menu: <Link to="/weather"> আবহাওয়া </Link>
+        },
+        {
+            id: 7,
+            menu: <Link to="/videoContent" className='text-white'> কৃষি স্কুল </Link>
+        },
+
     ]
     return (
         <div className="navbar bg-primary">
@@ -77,9 +87,17 @@ const Navbar = () => {
                             <div className="dropdown dropdown-bottom dropdown-end" style={{ zIndex: 9999 }}>
                                 <label tabIndex={0} className="btn m-2"> {user ? user?.name : 'Hi,user'} </label>
                                 <ul tabIndex={0} className="dropdown-content z-[1] menu p-5 shadow bg-base-100 rounded-box w-52 gap-12">
-                                    <li><Link to="/profile"><PersonOutline /> Profile</Link></li>
-                                    <li><Link><ListAlt /> Orders</Link></li>
-                                    <li><Link to="/cart">< ShoppingCart/> Cart </Link></li>
+
+                                    <li><Link to="/cart">< ShoppingCart /> Cart </Link></li>
+
+                                    <li><Link to="/user/dashboard">< Create /> Dashboard </Link></li>
+                                    {
+                                        user && isAuthenticated && user.role === "admin" && (
+                                            <li>
+                                                <Link to="/admin/dashboard"><Dashboard /> Admin Dashboard</Link>
+                                            </li>
+                                        )
+                                    }
                                     <li> <button
                                         onClick={logoutUser}
                                         className='btn btn-primary flex justify-center items-center'

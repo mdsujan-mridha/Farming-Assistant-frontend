@@ -28,7 +28,6 @@ const ProductDetails = () => {
     }
     // increase quantity 
     const increaseQuantity = () => {
-
         if (product.Stock <= quantity) return;
         const qty = quantity + 1;
         setQuantity(qty);
@@ -130,6 +129,12 @@ const ProductDetails = () => {
                                         <div className='py-7'>
                                             <p className='text-xl font-bold text-gray-600'> Description </p>
                                             <p className='py-4 text-justify font-semibold opacity-70'> {product?.description} </p>
+
+                                        </div>
+                                        <div className='py-7'>
+                                            <p className='text-xl font-bold text-gray-600'> Location: </p>
+                                            <p className='py-4 text-justify font-semibold opacity-70'> {product?.location} </p>
+
                                         </div>
                                         <button
                                             className='btn w-52 bg-primary text-white outline-none border-0 rounded-full'> Submit Review </button>

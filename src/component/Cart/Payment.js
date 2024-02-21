@@ -43,7 +43,7 @@ const Payment = ({ stripeApiKey }) => {
         try {
             const config = {
                 headers: {
-                    Authorization: `Bearer ${stripeApiKey}`,
+                    // Authorization: `Bearer ${stripeApiKey}`,
                     "Content-Type": "application/json",
                 },
             };

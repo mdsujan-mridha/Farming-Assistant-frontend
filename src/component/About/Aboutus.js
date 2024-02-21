@@ -37,6 +37,9 @@ const Aboutus = () => {
                             </p>
                         </ul>
                     </div>
+
+
+
                 </div>
                 <div
                     data-aos="fade-down"
@@ -45,6 +48,44 @@ const Aboutus = () => {
                     className='w-full lg:w-4/12 pt-10'>
                     <img src={aboutImage} alt="About us" className='w-full' />
                 </div>
+
+            </div>
+
+            <div>
+                <h1 className='text-center font-extrabold  text-4xl text-primary'> কিছু সাধারণ প্রশ্নোত্তর  </h1>
+
+                <div className='w-1/2 mx-auto py-10'>
+                    <div className="join join-vertical w-full">
+                        <div className="collapse collapse-arrow join-item border border-base-300">
+                            <input type="radio" name="my-accordion-4" checked="checked" />
+                            <div className="collapse-title text-xl font-medium">
+                               Question 01
+                            </div>
+                            <div className="collapse-content">
+                                <p> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iure labore corrupti repellendus laboriosam, nam obcaecati excepturi rem alias aliquid suscipit! </p>
+                            </div>
+                        </div>
+                        <div className="collapse collapse-arrow join-item border border-base-300">
+                            <input type="radio" name="my-accordion-4" />
+                            <div className="collapse-title text-xl font-medium">
+                                Question -2
+                            </div>
+                            <div className="collapse-content">
+                                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repellendus mollitia, voluptates exercitationem repudiandae maxime facere et minima perferendis quas officia. </p>
+                            </div>
+                        </div>
+                        <div className="collapse collapse-arrow join-item border border-base-300">
+                            <input type="radio" name="my-accordion-4" />
+                            <div className="collapse-title text-xl font-medium">
+                                Question -3
+                            </div>
+                            <div className="collapse-content">
+                                <p> Lorem ipsum dolor, sit amet consectetur adipisicing elit. Asperiores repellat vero quisquam at laudantium ipsam quas laborum, voluptatibus fugiat sequi nulla, voluptatum illum omnis. Adipisci sapiente minus dolorem consequatur cupiditate. </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </Fragment>
     );
