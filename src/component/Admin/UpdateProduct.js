@@ -1,6 +1,6 @@
 import React, { Fragment, useEffect, useState } from 'react';
 import Sidebar from './Sidebar';
-import { AccountTree, AttachMoney, DescriptionSharp, Spellcheck, Storage } from '@mui/icons-material';
+import { AccountTree, AttachMoney, DescriptionSharp, LocalActivity, Spellcheck, Storage } from '@mui/icons-material';
 import { Button } from '@mui/material';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
@@ -35,6 +35,7 @@ const UpdateProduct = () => {
     const [description, setDescription] = useState("");
     const [category, setCategory] = useState("");
     const [Stock, setStock] = useState(0);
+    const [location, setLocation] = useState("");
     const [images, setImages] = useState([]);
     const [oldImages, setOldImages] = useState([]);
     const [imagesPreview, setImagesPreview] = useState([]);
@@ -51,6 +52,7 @@ const UpdateProduct = () => {
             setCategory(product.category);
             setStock(product.Stock);
             setOldImages(product.images);
+            setLocation(product?.location);
         }
         if (error) {
             toast.error(error)
@@ -77,7 +79,8 @@ const UpdateProduct = () => {
             price,
             Stock,
             category,
-            images
+            images,
+            location
         };
 
 
@@ -146,6 +149,17 @@ const UpdateProduct = () => {
                                 placeholder="Product Description"
                                 value={description}
                                 onChange={(e) => setDescription(e.target.value)}
+                                cols="30"
+                                rows="1"
+                            ></textarea>
+                        </div>
+                        <div>
+                            <LocalActivity />
+
+                            <textarea
+                                placeholder="Seller Location"
+                                value={location}
+                                onChange={(e) => setLocation(e.target.value)}
                                 cols="30"
                                 rows="1"
                             ></textarea>
