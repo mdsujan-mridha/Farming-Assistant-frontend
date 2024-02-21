@@ -6,6 +6,7 @@ import CategoryCard from './CategoryCard';
 import Contact from '../Contact/Contact';
 import Map from './Map';
 import FeaturedProduct from './FeaturedProduct';
+import HomeBlog from './HomeBlog';
 
 
 const Home = () => {
@@ -15,8 +16,9 @@ const Home = () => {
             <CategoryCard />
             <OrganicFood />
             <FeaturedProduct />
-            <Aboutus />
-            <Contact />
+            {/* <Aboutus /> */}
+            {/* <Contact /> */}
+            <HomeBlog />
             <Map />
 
         </div>

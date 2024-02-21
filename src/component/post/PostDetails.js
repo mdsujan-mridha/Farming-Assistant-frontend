@@ -1,5 +1,5 @@
 import React, { Fragment, useEffect, useState } from 'react';
-import image from "../images/Organic product/product 7.jpg";
+
 
 import { useParams } from 'react-router-dom';
 
@@ -26,7 +26,7 @@ const PostDetails = () => {
 
     return (
         <Fragment>
-            <div className='px-12 pt-12'>
+            <div className='px-12 pt-12 min-h-screen pb-14'>
                 <img className=' rounded-md w-full' src={images?.[0]?.url} alt="information" />
                 <p className='py-5 flex justify-between items-center'> category: {category} <span> create At: {createAt}  </span></p>
                 <div>

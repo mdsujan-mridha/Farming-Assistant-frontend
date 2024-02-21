@@ -36,18 +36,20 @@ const Videos = () => {
                 ) :
                     (
                         <Fragment>
-                            <MetaData title={"Video page"} />
-                            <h2 className='productsHeading'> All Videos  </h2>
-                            <div className="px-12 w-full grid grid-cols-2 gap-5">
-                                {
-                                    videos &&
-                                    videos?.map((item) => (
-                                        <VideoCard
-                                            key={item?._id}
-                                            item={item}
-                                        />
-                                    ))
-                                }
+                            <div className="pb-96">
+                                <MetaData title={"Video page"} />
+                                <h2 className='productsHeading text-white'> All Videos  </h2>
+                                <div className="px-12 w-full grid grid-cols-2 gap-5">
+                                    {
+                                        videos &&
+                                        videos?.map((item) => (
+                                            <VideoCard
+                                                key={item?._id}
+                                                item={item}
+                                            />
+                                        ))
+                                    }
+                                </div>
                             </div>
                         </Fragment>
                     )

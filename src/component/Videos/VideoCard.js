@@ -16,8 +16,8 @@ const VideoCard = ({ item }) => {
                     width: '100%'
                 }}
             />
-            <h1> {item?.title} </h1>
-            <p> {item?.description} </p>
+            <h1 className='text-2xl font-medium py-5'> {item?.title} </h1>
+            <p className='text-md font-semibold pb-10'> {item?.description} </p>
         </div>
     );
 };

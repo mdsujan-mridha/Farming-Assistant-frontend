@@ -28,7 +28,6 @@ import Success from './component/Cart/Success';
 import 'react-multi-carousel/lib/styles.css';
 import Contact from './component/Contact/Contact';
 import Weather from './component/Weather/Weather';
-import Information from './component/Information/Information';
 import Accessories from './component/Accessories/Accessories';
 import InformationDetails from './component/Information/InformationDetails';
 import PostDetails from './component/post/PostDetails';
@@ -49,6 +48,9 @@ import UpdatePost from './component/Admin/UpdatePost';
 import NewPost from './component/Admin/NewPost';
 import SellNewProduct from './component/user/SellNewProduct';
 import Videos from './component/Videos/Videos';
+import UserDashboard from './component/user/UserDashboard';
+import UserOrder from './component/user/UserOrder';
+import UpdateProfile from './component/user/UpdateProfile';
 
 function App() {
 
@@ -88,16 +90,17 @@ function App() {
         <Route path='/information/details' element={<InformationDetails />}></Route>
         <Route path="/accessories" element={<Accessories />}></Route>
         <Route path='/accessories/:id' element={<AccessoriesDetails />}></Route>
+
         {/* cart will be protected route */}
 
         {/* protected route for user */}
 
         <Route element={<ProtectedRoute isAuthenticated={isAuthenticated} />}>
           <Route path='/cart' element={<Cart />}></Route>
-          <Route path='/profile' element={<Profile />}></Route>
+          <Route path='/profile' element={<UserDashboard />}></Route>
           <Route path='/shipping' element={<Shipping />} ></Route>
           <Route path='/order/confirm' element={<ConfirmOrder />} ></Route>
-          <Route path='/orders' element={<Myorder />}></Route>
+          <Route path='/orders' element={<UserOrder />}></Route>
           <Route path='/order/:id' element={<OrderDetails />}></Route>
           <Route path='/new/product' element={<SellNewProduct />}></Route>
           <Route>
@@ -114,6 +117,8 @@ function App() {
             )}
           </Route>
           <Route path='/success' element={<Success />} ></Route>
+          <Route path='/user/dashboard' element={<UserDashboard />} />
+          <Route path='/update-profile' element={<UpdateProfile />}></Route>
         </Route>
 
         {/* this route for admin  */}

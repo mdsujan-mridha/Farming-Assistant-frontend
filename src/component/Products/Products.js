@@ -89,11 +89,11 @@ const Products = () => {
                 loading ? (<Loader />)
                     :
                     (<Fragment>
-                        <div className='flex flex-col lg:flex-row gap-5 px-12 bg bg-gray-200' style={{ minHeight: '100vh', width: '100%' }}>
-                            <div className='bg-white w-72 px-10 pt-10'>
+                        <div className='flex flex-col lg:flex-row gap-5 px-12 bg-primary' style={{ minHeight: '100vh', width: '100%' }}>
+                            <div className='bg-secondary w-72 px-10 pt-14 rounded-md shadow-2xl'>
                                 <div className='flex justify-between items-center'>
                                     <p className='text-xl font-bold'> Filter </p>
-                                    <button onClick={()=>clearFilter()} className='btn'> Reset </button>
+                                    <button onClick={() => clearFilter()} className='btn'> Reset </button>
                                 </div>
                                 <div className='pt-10 mt-10' style={{ borderTop: '1px solid #1c1c1c' }}>
                                     <p className='text-xl font-bold'> Price </p>
@@ -117,7 +117,7 @@ const Products = () => {
                                                 <li
                                                     key={index}
                                                     onClick={() => setCategory(category)}
-                                                    className='text-lg font-bold opacity-60'
+                                                    className='text-lg font-bold text-white cursor-pointer hover:text-orange-600'
                                                 >
                                                     {category}
                                                 </li>
@@ -198,18 +198,18 @@ const Products = () => {
                             </div>
                             <div className='w-full'>
                                 <div
-                                    className='mt-10 w-full h-32 bg-white flex justify-center items-center rounded-md px-12'
+                                    className='mt-10 w-full h-32 bg-secondary flex justify-center items-center rounded-md px-12'
                                 >
                                     <input
                                         type="text"
                                         placeholder='Search your product'
-                                        className='w-full border-2 p-4 rounded-xl border-gray-500'
+                                        className='w-full border-2 p-4 rounded-xl neutral bg-transparent'
                                         onChange={handleSearch}
                                         value={keyword}
 
                                     /> </div>
-                                <div className='mt-7 pt-10 bg-white rounded-lg h-full px-8'>
-                                    <p className='text-lg font-bold'> Found <span className='text-primary'> 200 </span> products </p>
+                                <div className='mt-7 pt-10 bg-secondary rounded-lg h-full px-8'>
+                                    <p className='text-xl font-bold'> Found <span className=' text-orange-300'> {productsCount} </span> products </p>
                                     <div className='pt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 '>
                                         {
                                             products?.length === 0 ? (

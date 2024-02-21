@@ -9,6 +9,7 @@ import { AccountTree, AttachMoney, Description, Spellcheck, Storage } from '@mui
 import { Button } from '@mui/material';
 
 import "./newProduct.css";
+import UserSidebar from './UserSidebar';
 
 // set category 
 const categories = [
@@ -90,7 +91,7 @@ const SellNewProduct = () => {
         <Fragment>
             {/* <MetaData title="Create Product" /> */}
             <div className="dashboard">
-
+                <UserSidebar />
                 <div className="newProductContainer">
                     <form
                         className="createProductForm"

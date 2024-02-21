@@ -18,6 +18,14 @@ import {
     REGISTER_FAIL,
     REGISTER_REQUEST,
     REGISTER_SUCCESS,
+    UPDATE_PASSWORD_FAIL,
+    UPDATE_PASSWORD_REQUEST,
+    UPDATE_PASSWORD_RESET,
+    UPDATE_PASSWORD_SUCCESS,
+    UPDATE_PROFILE_FAIL,
+    UPDATE_PROFILE_REQUEST,
+    UPDATE_PROFILE_RESET,
+    UPDATE_PROFILE_SUCCESS,
     UPDATE_USER_FAIL,
     UPDATE_USER_REQUEST,
     UPDATE_USER_RESET,
@@ -146,7 +154,8 @@ export const userDetailsReducer = (state = { user: {} }, action) => {
 
 export const profileReducer = (state = {}, action) => {
     switch (action.type) {
-     
+        case UPDATE_PROFILE_REQUEST:
+        case UPDATE_PASSWORD_REQUEST:
         case DELETE_USER_REQUEST:
         case UPDATE_USER_REQUEST:
             return {
@@ -154,9 +163,10 @@ export const profileReducer = (state = {}, action) => {
                 loading: true,
             };
 
-        
-        case UPDATE_USER_SUCCESS:
 
+        case UPDATE_USER_SUCCESS:
+        case UPDATE_PROFILE_SUCCESS:
+        case UPDATE_PASSWORD_SUCCESS:
             return {
                 ...state,
                 loading: false,
@@ -169,7 +179,8 @@ export const profileReducer = (state = {}, action) => {
                 isDeleted: action.payload.success,
                 message: action.payload.message
             }
-       
+        case UPDATE_PROFILE_FAIL:
+        case UPDATE_PASSWORD_FAIL:
         case DELETE_USER_FAIL:
         case UPDATE_USER_FAIL:
             return {
@@ -177,7 +188,8 @@ export const profileReducer = (state = {}, action) => {
                 loading: false,
                 error: action.payload
             };
-        
+        case UPDATE_PROFILE_RESET:
+        case UPDATE_PASSWORD_RESET:
         case UPDATE_USER_RESET:
             return {
                 ...state,
