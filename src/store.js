@@ -2,7 +2,7 @@ import { combineReducers, applyMiddleware, legacy_createStore as createStore } f
 import { composeWithDevTools } from 'redux-devtools-extension';
 import thunk from 'redux-thunk';
 import { allUserReducer, profileReducer, userDetailsReducer, userReducer } from './component/reducer/userReducer';
-import { newProductReducer, productDetailsReducer, productReducer, updateProductReducer } from './component/reducer/productReducer';
+import { newProductReducer, newReviewReducer, productDetailsReducer, productReducer, productReviewReducer, reviewReducer, updateProductReducer } from './component/reducer/productReducer';
 import { cartReducer } from './component/reducer/cartReducer';
 import { newPostReducer, postDetails, postReducer, updatePostReducer } from './component/reducer/postReducer';
 import { allOrdersReducer, myOrdersReducer, newOrderReducer, orderDetailsReducer, orderReducer } from './component/reducer/orderReducer';
@@ -34,7 +34,11 @@ const reducer = combineReducers({
     order: orderReducer,
     videos: videosReducer,
     video: updateVideoReducer,
-    newVideo: newVideoReducer
+    newVideo: newVideoReducer,
+    // product review 
+    productReviews: productReviewReducer,
+    review: reviewReducer,
+    newReview: newReviewReducer,
 });
 
 

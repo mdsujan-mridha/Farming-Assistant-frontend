@@ -8,8 +8,6 @@ import { toast } from 'react-toastify';
 
 const ProductCard = ({ product }) => {
     const dispatch = useDispatch();
-
-    //   console.log(product.price)
     const addToCartHandler = () => {
         dispatch(addItemToCart(product._id, 1))
         toast.success("Item added to cart");
@@ -32,7 +30,7 @@ const ProductCard = ({ product }) => {
                             emptyIcon={<Star style={{ opacity: 0.55 }} fontSize="inherit" />}
                         />
                     </div>
-                    <p className='flex  gap-10 pt-2 text-gray-200 font-bold text-xl'> <LocationOn /> Barguna,Barishal </p>
+                    <p className='flex  gap-10 pt-2 text-gray-200 font-bold text-xl'> <LocationOn /> {product?.location} </p>
                     <div className='flex gap-3 items-center p-2 pb-5'>
                         <p className='text-lg font-extrabold text-white'> {product?.price} /- টাকা </p>
                         <p className='bg-primary p-2 rounded-xl px-5'> 5% </p>

@@ -87,7 +87,6 @@ const Navbar = () => {
                             <div className="dropdown dropdown-bottom dropdown-end" style={{ zIndex: 9999 }}>
                                 <label tabIndex={0} className="btn m-2"> {user ? user?.name : 'Hi,user'} </label>
                                 <ul tabIndex={0} className="dropdown-content z-[1] menu p-5 shadow bg-base-100 rounded-box w-52 gap-12">
-
                                     <li><Link to="/cart">< ShoppingCart /> Cart </Link></li>
 
                                     <li><Link to="/user/dashboard">< Create /> Dashboard </Link></li>

@@ -5,8 +5,7 @@ const Footer = () => {
     return (
 
         <Fragment>
-
-            <footer className="footer p-10 bg-secondary text-white relative py-6">
+            <footer className="footer p-10 bg-secondary text-white mt-56">
                 <nav>
                     <h6 className="footer-title">Services</h6>
                     <Link className="link link-hover">Branding</Link>
