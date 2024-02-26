@@ -1,6 +1,6 @@
 import React, { Fragment, useEffect, useState } from 'react';
 import Sidebar from './Sidebar';
-import { AccountTree, AttachMoney, Description, Spellcheck, Storage } from '@mui/icons-material';
+import { AccountTree, AttachMoney, Description, LocationCity, Spellcheck, Storage } from '@mui/icons-material';
 import { Button } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
@@ -39,6 +39,7 @@ const NewProduct = () => {
     const [Stock, setStock] = useState(0);
     const [images, setImages] = useState([]);
     const [imagesPreview, setImagesPreview] = useState([]);
+    const [location, setLocation] = useState("");
 
     useEffect(() => {
         if (error) {
@@ -60,6 +61,7 @@ const NewProduct = () => {
             name,
             price,
             description,
+            location,
             category,
             Stock,
             images
@@ -133,7 +135,17 @@ const NewProduct = () => {
                                 rows="1"
                             ></textarea>
                         </div>
+                        <div>
+                            <LocationCity />
 
+                            <textarea
+                                placeholder="Your location"
+                                value={location}
+                                onChange={(e) => setLocation(e.target.value)}
+                                cols="30"
+                                rows="1"
+                            ></textarea>
+                        </div>
                         <div>
                             <AccountTree />
                             <select onChange={(e) => setCategory(e.target.value)}>
