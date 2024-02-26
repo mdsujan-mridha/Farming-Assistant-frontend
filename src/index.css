@@ -4,5 +4,9 @@
 
 body {
     background-color: #212f3d;
-    color:#ffff;
+    color: #ffff;
+}
+
+a:hover {
+    color: #ffff;
 }

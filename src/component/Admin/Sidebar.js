@@ -52,6 +52,19 @@ const Sidebar = () => {
                             <TreeItem nodeId="16" label="All Blog" icon={<PostAdd />} />
                         </Link>
                     </TreeItem>
+                    <TreeItem nodeId="151" label="Video">
+                        <Link to="/admin/video/new">
+                            <TreeItem nodeId="152" label="Add Video" icon={<Add />} />
+                        </Link>
+                        <Link to="/admin/videos">
+                            <TreeItem nodeId="153" label="All Videos" icon={<PostAdd />} />
+                        </Link>
+                    </TreeItem>
+                    <TreeItem nodeId="181" label="Message">
+                        <Link to="/admin/message">
+                            <TreeItem nodeId="153" label="All Messages" icon={<PostAdd />} />
+                        </Link>
+                    </TreeItem>
                 </TreeView>
             </Link>
 

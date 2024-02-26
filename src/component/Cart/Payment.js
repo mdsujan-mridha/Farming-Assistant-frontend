@@ -7,10 +7,12 @@ import { toast } from 'react-toastify';
 import { createOrder } from '../action/orderAction';
 import MetaData from '../Layout/MetaData';
 import CheckOutSteps from './CheckOutSteps';
-
+import "./Payment.css";
+import { CreditCard, Event, VpnKey } from '@mui/icons-material';
+import { Typography } from '@mui/material';
 
 const Payment = ({ stripeApiKey }) => {
-    
+
     // console.log(stripeApiKey)
     const orderInfo = JSON.parse(sessionStorage.getItem("orderInfo"));
     const payBtn = useRef(null);
@@ -29,7 +31,7 @@ const Payment = ({ stripeApiKey }) => {
     const order = {
         shippingInfo,
         orderItems: cartItems,
-        itemsPrice:orderInfo?.subtotal,
+        itemsPrice: orderInfo?.subtotal,
         taxPrice: orderInfo?.tax,
         shippingPrice: orderInfo?.shippingPrice,
         totalPrice: orderInfo?.totalPrice,
@@ -96,31 +98,33 @@ const Payment = ({ stripeApiKey }) => {
         <Fragment>
             <MetaData title="Payment" />
             <CheckOutSteps activeStep={2} />
-            <div className='bg-primary rounded-md' style={{ maxWidth: '500px', height: '50vh', margin: '0 auto' }}>
-                <h1 className='text-white pt-5 text-center text-3xl font-bold'> Card Info </h1>
+            <div className="paymentContainer">
                 <form
+                    className='paymentForm'
                     onSubmit={(e) => submitHandler(e)}
-                    className='flex justify-center items-center flex-col p-10'
                 >
-                    <div style={{ width: '480px' }}>
-
-                        <CardNumberElement
-
-
-                            className="input input-bordered input-secondary w-full"
-                            style={{ outline: 'none' }}
-                        />
+                    <Typography> Card Info </Typography>
+                    <div>
+                        <CreditCard />
+                        <CardNumberElement className='paymentInput' />
                     </div>
-                    <CardExpiryElement className="input input-bordered input-secondary w-full" />
+                    <div>
+                        <Event />
+                        <CardExpiryElement className='paymentInput' />
 
-                    <CardCvcElement className="input input-bordered input-secondary w-full" />
-
+                    </div>
+                    <div>
+                        <VpnKey />
+                        <CardCvcElement className='paymentInput' />
+                    </div>
                     <input
-                        type="submit"
+                        type='submit'
                         value={`Pay ${orderInfo && orderInfo?.totalPrice}`}
                         ref={payBtn}
-                        className='btn btn-secondary w-full text-white text-xl font-bold'
-                    />
+                        className='paymentFormBtn'
+                    >
+
+                    </input>
                 </form>
             </div>
         </Fragment>

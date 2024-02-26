@@ -31,7 +31,7 @@ const Products = () => {
         "Accessories"
     ]
 
-    const [price, setPrice] = useState([0, 200]);
+    const [price, setPrice] = useState([0, 25000]);
     const [category, setCategory] = useState('');
     const [currentPage, setCurrentPage] = useState(1);
     const [rating, setRating] = useState(5);
@@ -76,12 +76,14 @@ const Products = () => {
 
 
     const clearFilter = () => {
-        setPrice([0, 200]);
+        setPrice([0, 25000]);
         setCategory('');
         setKeyword("");
 
 
     }
+
+    console.log(products);
 
     return (
         <Fragment>
@@ -104,7 +106,7 @@ const Products = () => {
                                             valueLabelDisplay="auto"
                                             aria-labelledby='range-slider'
                                             min={0}
-                                            max={200}
+                                            max={25000}
                                         />
                                     </div>
 

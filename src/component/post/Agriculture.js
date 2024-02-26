@@ -1,36 +1,31 @@
+
 import React, { Fragment, useEffect, useState } from 'react';
-import PostCard from './PostCard';
 import { useDispatch, useSelector } from 'react-redux';
+import { toast } from 'react-toastify';
 import { clearErrors, getPost } from '../action/postAction';
 import Pagination from 'react-js-pagination';
-
-import Loader from '../Layout/Loader';
+import PostCard from './PostCard';
 import MetaData from '../Layout/MetaData';
-import "./Posts.css";
-import { toast } from 'react-toastify';
+import Loader from '../Layout/Loader';
 
 const productCategory = [
-    "Beans",
-    "Radish",
-    "Cauliflower",
-    "Cabbage",
-    "Pumpkin",
-    "Capsicum",
-    "Pea",
-    "Haicha",
-    "Lemon",
-    "Carrot",
-    "Tomato",
-    "Pumpkin",
+    "Crop Production",
+    "Livestock Farming",
+    "Horticulture",
+    "Aquaculture",
+    "Agroforestry",
+    "Agricultural Machinery",
+    "Agricultural Chemicals",
+    "Soil Science",
+    "Irrigation Systems",
+    "Agricultural Economics",
 
 ]
 
-
-const Posts = () => {
-    
+const Agriculture = () => {
     const dispatch = useDispatch();
     const [currentPage, setCurrentPage] = useState(1);
-    const [category, setCategory] = useState('Beans');
+    const [category, setCategory] = useState('Crop Production');
 
     const {
         loading,
@@ -64,9 +59,11 @@ const Posts = () => {
     // console.log(posts);
 
     const handleReset = () => {
-        setCategory("Beans")
+        setCategory("Crop Production")
         setCurrentPage("")
     }
+
+
 
     return (
         <Fragment>
@@ -139,4 +136,4 @@ const Posts = () => {
     );
 };
 
-export default Posts;
+export default Agriculture;

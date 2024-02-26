@@ -1,36 +1,28 @@
+
 import React, { Fragment, useEffect, useState } from 'react';
-import PostCard from './PostCard';
 import { useDispatch, useSelector } from 'react-redux';
 import { clearErrors, getPost } from '../action/postAction';
-import Pagination from 'react-js-pagination';
-
-import Loader from '../Layout/Loader';
-import MetaData from '../Layout/MetaData';
-import "./Posts.css";
 import { toast } from 'react-toastify';
+import Pagination from 'react-js-pagination';
+import PostCard from './PostCard';
+import MetaData from '../Layout/MetaData';
+import Loader from '../Layout/Loader';
 
 const productCategory = [
-    "Beans",
-    "Radish",
-    "Cauliflower",
-    "Cabbage",
-    "Pumpkin",
-    "Capsicum",
-    "Pea",
-    "Haicha",
-    "Lemon",
-    "Carrot",
-    "Tomato",
-    "Pumpkin",
-
+    "Vegetables",
+    "Fruits",
+    "Grains",
+    "Herbs",
+    "Flowers",
+    "Medicinal Plants",
+    "Specialty Crops"
 ]
 
+const Cultivation = () => {
 
-const Posts = () => {
-    
     const dispatch = useDispatch();
     const [currentPage, setCurrentPage] = useState(1);
-    const [category, setCategory] = useState('Beans');
+    const [category, setCategory] = useState('Vegetables');
 
     const {
         loading,
@@ -64,7 +56,7 @@ const Posts = () => {
     // console.log(posts);
 
     const handleReset = () => {
-        setCategory("Beans")
+        setCategory("Vegetables")
         setCurrentPage("")
     }
 
@@ -76,8 +68,8 @@ const Posts = () => {
                 ) :
                     (
                         <Fragment>
-                            <MetaData title={"Product page"} />
-                            <h2 className='productsHeading'> All Information  </h2>
+                            <MetaData title={"Cultivation page"} />
+                            <h2 className='productsHeading'> Cultivation  </h2>
                             <div className="products">
                                 {
                                     posts &&
@@ -139,4 +131,4 @@ const Posts = () => {
     );
 };
 
-export default Posts;
+export default Cultivation;

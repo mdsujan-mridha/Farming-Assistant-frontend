@@ -8,7 +8,7 @@ const PostCard = ({ item }) => {
     return (
         <Link to={`/post/${item._id}`} className='productCard' >
             <img src={item.images[0]?.url} alt={item.name} />
-            <p> {item.title} </p>
+            <p className='text-white'> {item.title} </p>
             <div>
             </div>
             

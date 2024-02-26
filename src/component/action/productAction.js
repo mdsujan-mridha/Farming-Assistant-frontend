@@ -11,6 +11,9 @@ import {
     ALL_REVIEW_REQUEST,
     ALL_REVIEW_SUCCESS,
     CLEAR_ERROR,
+    DELETE_PRODUCT_FAIL,
+    DELETE_PRODUCT_REQUEST,
+    DELETE_PRODUCT_SUCCESS,
     DELETE_REVIEW_FAIL,
     DELETE_REVIEW_REQUEST,
     DELETE_REVIEW_SUCCESS,
@@ -29,7 +32,7 @@ import {
 } from "../constant/ProductConstant"
 
 
-export const getAllProduct = (price = [0, 200], currentPage = 1, category) => async (dispatch) => {
+export const getAllProduct = (price = [0, 25000], currentPage = 1, category) => async (dispatch) => {
 
     try {
         dispatch({
@@ -113,6 +116,22 @@ export const updateProduct = (id, productData) => async (dispatch) => {
         })
     }
 }
+// delete product admin
+export const deleteProduct = (id) => async (dispatch) => {
+    try {
+        dispatch({ type: DELETE_PRODUCT_REQUEST })
+        const { data } = await axios.delete(`http://localhost:5000/api/v1/admin/product/${id}`)
+        dispatch({
+            type: DELETE_PRODUCT_SUCCESS,
+            payload: data.success,
+        })
+    } catch (error) {
+        dispatch({
+            type: DELETE_PRODUCT_FAIL,
+            payload: error.response.data.message
+        })
+    }
+}
 
 // create new product by admin 
 export const createProduct = (productData) => async (dispatch) => {
@@ -149,7 +168,7 @@ export const newReview = (reviewData) => async (dispatch) => {
         // const config = {
         //     headers: { "Content-Type": "application/json" }
         // };
-        const {data} = await axios.put(`http://localhost:5000/api/v1/review`, reviewData);
+        const { data } = await axios.put(`http://localhost:5000/api/v1/review`, reviewData);
         dispatch({
             type: NEW_REVIEW_SUCCESS,
             payload: data.success

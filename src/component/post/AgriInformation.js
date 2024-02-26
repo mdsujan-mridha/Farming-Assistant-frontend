@@ -1,36 +1,33 @@
-import React, { Fragment, useEffect, useState } from 'react';
-import PostCard from './PostCard';
+
+
+import React, { Fragment, useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
+import { toast } from 'react-toastify';
 import { clearErrors, getPost } from '../action/postAction';
 import Pagination from 'react-js-pagination';
-
-import Loader from '../Layout/Loader';
+import PostCard from './PostCard';
 import MetaData from '../Layout/MetaData';
-import "./Posts.css";
-import { toast } from 'react-toastify';
+import Loader from '../Layout/Loader';
 
 const productCategory = [
-    "Beans",
-    "Radish",
-    "Cauliflower",
-    "Cabbage",
-    "Pumpkin",
-    "Capsicum",
-    "Pea",
-    "Haicha",
-    "Lemon",
-    "Carrot",
-    "Tomato",
-    "Pumpkin",
+    "Precision Agriculture",
+    "AgTech ",
+    "Sustainable Farming Practices",
+    "Vertical",
+    "Biotechnology ",
+    "Digital Farming",
+    "Agribusiness",
+    "Remote Sensing",
+    "Agricultural Robotics",
 
 ]
 
+const AgriInformation = () => {
 
-const Posts = () => {
-    
+
     const dispatch = useDispatch();
     const [currentPage, setCurrentPage] = useState(1);
-    const [category, setCategory] = useState('Beans');
+    const [category, setCategory] = useState('Precision Agriculture');
 
     const {
         loading,
@@ -64,7 +61,7 @@ const Posts = () => {
     // console.log(posts);
 
     const handleReset = () => {
-        setCategory("Beans")
+        setCategory("Precision Agriculture")
         setCurrentPage("")
     }
 
@@ -136,7 +133,7 @@ const Posts = () => {
                     )
             }
         </Fragment>
-    );
-};
+    )
+}
 
-export default Posts;
+export default AgriInformation

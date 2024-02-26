@@ -1,21 +1,21 @@
+
+
 import React, { Fragment, useEffect } from 'react';
-import "./ProductList.css";
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import { clearErrors, deleteProduct, getAdminProduct } from '../action/productAction';
-import Sidebar from './Sidebar';
-import { Delete, Edit } from '@mui/icons-material';
+import { clearErrors, deleteVideo, getAllVideo } from '../action/videoAction';
+import { NEW_VIDEO_RESET } from '../constant/videoConstant';
+import { Delete } from '@mui/icons-material';
 import { Button } from '@mui/material';
-import { DataGrid } from "@mui/x-data-grid"
-import { Link, useNavigate } from 'react-router-dom';
-import { NEW_PRODUCT_RESET } from '../constant/ProductConstant';
+import Sidebar from './Sidebar';
+import { DataGrid } from '@mui/x-data-grid';
 
-
-const ProductList = () => {
+const VideoList = () => {
 
     const dispatch = useDispatch();
-    const { error, products } = useSelector((state) => state.products);
-    const { error: deleteError, isDeleted } = useSelector((state) => state.product);
+    const { error, videos } = useSelector((state) => state.videos);
+    const { error: deleteError, isDeleted } = useSelector((state) => state.video);
 
     // console.log(products);
     const navigate = useNavigate();
@@ -30,42 +30,37 @@ const ProductList = () => {
             toast.error(deleteError)
             dispatch(clearErrors())
         }
-        if(isDeleted){
+        if (isDeleted) {
             toast.success("Product deleted successfully")
-            dispatch({ type: NEW_PRODUCT_RESET })
-            navigate('/admin/products');
+            dispatch({ type: NEW_VIDEO_RESET })
+            navigate('/admin/dashboard');
         }
-        dispatch(getAdminProduct())
+        dispatch(getAllVideo())
 
     }, [dispatch, error, deleteError, isDeleted, navigate]);
 
     const deleteProductHandler = (id) => {
-        dispatch(deleteProduct(id));
+        dispatch(deleteVideo(id));
     }
 
     const columns = [
-        { field: "id", headerName: "Product ID", minWidth: 200, flex: 0.5 },
+        { field: "id", headerName: "Video ID", minWidth: 200, flex: 0.5 },
         {
             field: "name",
             headerName: "Name",
             minWidth: 350,
             flex: 1,
         },
-        {
-            field: "stock",
-            headerName: "Stock",
-            type: "number",
-            minWidth: 150,
-            flex: 0.3,
-        },
+
 
         {
-            field: "price",
-            headerName: "Price",
-            type: "number",
+            field: "link",
+            headerName: "Video Url",
+            type: "text",
             minWidth: 270,
             flex: 0.5,
         },
+
         {
             field: "actions",
             flex: 0.3,
@@ -76,9 +71,7 @@ const ProductList = () => {
             renderCell: (params) => {
                 return (
                     <Fragment>
-                        <Link to={`/admin/product/${params.row.id}`}>
-                            <Edit />
-                        </Link>
+
 
                         <Button
                             onClick={() => deleteProductHandler(params.row.id)}
@@ -92,15 +85,15 @@ const ProductList = () => {
     ]
 
     const rows = [];
-    products &&
-        products.forEach((item) => {
+    videos &&
+        videos.forEach((item) => {
             rows.push({
                 id: item?._id,
-                stock: item?.Stock,
-                price: item?.price,
-                name: item?.name,
+                name: item?.title,
+                link: item?.videoUrl,
             })
         })
+
 
     return (
         <Fragment>
@@ -131,4 +124,4 @@ const ProductList = () => {
     );
 };
 
-export default ProductList;
+export default VideoList;

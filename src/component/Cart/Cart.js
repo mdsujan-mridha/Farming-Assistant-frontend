@@ -72,7 +72,7 @@ const Cart = () => {
                                                 type="number"
                                                 value={item?.quantity}
                                                 readOnly className='w-7'
-                                                style={{ outline: 'none', textAlign: 'center', font: '400 0.8vmax' }} />
+                                                style={{ outline: 'none', textAlign: 'center', font: '400 0.8vmax',color: '#1c1c1c' }} />
                                             <button
                                                 onClick={() => increaseQuantity(item?.product, item?.quantity, item?.stock)}
                                                 className='w-7 h-10 bg-black text-white text-2xl font-bold'> + </button>
@@ -85,7 +85,7 @@ const Cart = () => {
                                             boxSizing: 'border-box',
                                             font: '300 1vmax',
                                             justifyContent: 'flex-end',
-                                            color: 'rgba(0, 0, 0, 0.753)'
+                                            color: '#fff'
                                         }}>
                                             {` ${item?.price * item?.quantity} `}
                                         </p>
@@ -102,7 +102,7 @@ const Cart = () => {
                                 </div>
                                 <div></div>
                                 <div className='flex justify-end col-span-1 items-end'>
-                                    <Link to="/shipping" className='btn btn-primary w-52 rounded-full text-white'> Check out </Link>
+                                    <Link to="/shipping" className='btn btn-secondary w-52 rounded-full text-white shadow-2xl'> Check out </Link>
                                 </div>
                             </div>
                         </div>

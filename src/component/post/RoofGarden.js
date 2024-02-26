@@ -1,13 +1,13 @@
+
+
 import React, { Fragment, useEffect, useState } from 'react';
-import PostCard from './PostCard';
 import { useDispatch, useSelector } from 'react-redux';
+import { toast } from 'react-toastify';
 import { clearErrors, getPost } from '../action/postAction';
 import Pagination from 'react-js-pagination';
-
-import Loader from '../Layout/Loader';
+import PostCard from './PostCard';
 import MetaData from '../Layout/MetaData';
-import "./Posts.css";
-import { toast } from 'react-toastify';
+import Loader from '../Layout/Loader';
 
 const productCategory = [
     "Beans",
@@ -26,8 +26,8 @@ const productCategory = [
 ]
 
 
-const Posts = () => {
-    
+const RoofGarden = () => {
+
     const dispatch = useDispatch();
     const [currentPage, setCurrentPage] = useState(1);
     const [category, setCategory] = useState('Beans');
@@ -139,4 +139,4 @@ const Posts = () => {
     );
 };
 
-export default Posts;
+export default RoofGarden;

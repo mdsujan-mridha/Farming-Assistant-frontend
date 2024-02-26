@@ -5,7 +5,7 @@ import { toast } from 'react-toastify';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
-import { AccountTree, AttachMoney, Description, Spellcheck, Storage } from '@mui/icons-material';
+import { AccountTree, AttachMoney, Description, LocationCity, Spellcheck, Storage } from '@mui/icons-material';
 import { Button } from '@mui/material';
 
 import "./newProduct.css";
@@ -13,13 +13,19 @@ import UserSidebar from './UserSidebar';
 
 // set category 
 const categories = [
-    "Laptop",
-    "Footwear",
-    "Bottom",
-    "Tops",
-    "Attire",
-    "Camera",
-    "SmartPhones",
+    "Beans",
+    "Radish",
+    "Cauliflower",
+    "Cabbage",
+    "Pumpkin",
+    "Capsicum",
+    "Pea",
+    "Haicha",
+    "Lemon",
+    "Carrot",
+    "Tomato",
+    "Pumpkin",
+    "Accessories"
 ];
 
 const SellNewProduct = () => {
@@ -34,6 +40,8 @@ const SellNewProduct = () => {
     const [category, setCategory] = useState("");
     const [Stock, setStock] = useState(0);
     const [images, setImages] = useState([]);
+    const [location, setLocation] = useState("");
+
     const [imagesPreview, setImagesPreview] = useState([]);
 
     useEffect(() => {
@@ -52,15 +60,15 @@ const SellNewProduct = () => {
 
     const createProductSubmitHandler = (e) => {
         e.preventDefault()
-        const myForm = new FormData()
-        myForm.set("name", name);
-        myForm.set("price", price);
-        myForm.set("description", description);
-        myForm.set("category", category);
-        myForm.set("Stock", Stock);
-        images.forEach((image) => {
-            myForm.append("images", image);
-        });
+        const myForm = {
+            name,
+            price,
+            description,
+            category,
+            Stock,
+            images,
+            location,
+        }
         dispatch(createProduct(myForm));
 
 
@@ -127,6 +135,17 @@ const SellNewProduct = () => {
                                 placeholder="Product Description"
                                 value={description}
                                 onChange={(e) => setDescription(e.target.value)}
+                                cols="30"
+                                rows="1"
+                            ></textarea>
+                        </div>
+                        <div>
+                            <LocationCity />
+
+                            <textarea
+                                placeholder="Your location"
+                                value={location}
+                                onChange={(e) => setLocation(e.target.value)}
                                 cols="30"
                                 rows="1"
                             ></textarea>

@@ -43,7 +43,7 @@ export const getAllVideo = () => async (dispatch) => {
 
 
 
-export const createProduct = (videoData) => async (dispatch) => {
+export const createVideo = (videoData) => async (dispatch) => {
 
     try {
         dispatch({ type: NEW_VIDEO_REQUEST })
@@ -68,7 +68,7 @@ export const createProduct = (videoData) => async (dispatch) => {
 
 
 // delete product by admin 
-export const deletePost = (id) => async (dispatch) => {
+export const deleteVideo = (id) => async (dispatch) => {
     try {
         dispatch({
             type: DELETE_VIDEO_REQUEST

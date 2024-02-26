@@ -11,7 +11,7 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Register from './component/user/Register';
 import axios from 'axios';
-import Profile from './component/user/Profile';
+
 import ProductDetails from './component/Products/ProductDetails';
 import Cart from './component/Cart/Cart';
 import Posts from './component/post/Posts';
@@ -51,6 +51,15 @@ import Videos from './component/Videos/Videos';
 import UserDashboard from './component/user/UserDashboard';
 import UserOrder from './component/user/UserOrder';
 import UpdateProfile from './component/user/UpdateProfile';
+import RoofGarden from './component/post/RoofGarden';
+import Cultivation from './component/post/Cultivation';
+
+import AgriInformation from './component/post/AgriInformation';
+import Agriculture from './component/post/Agriculture';
+import NewVideo from './component/Admin/NewVideo';
+import VideoList from './component/Admin/VideoList';
+import Message from './component/Admin/Message';
+import MessageDetails from './component/Admin/MessageDetails';
 
 function App() {
 
@@ -84,12 +93,16 @@ function App() {
         <Route path='/contact' element={<Contact />}></Route>
         <Route path='/weather' element={<Weather />}></Route>
         <Route path='/products/:productId' element={<ProductDetails />}></Route>
-        <Route path='/post' element={<Posts />}></Route>
         <Route path='/post/:id' element={<PostDetails />}></Route>
         <Route path='/videoContent' element={<Videos />}></Route>
         <Route path='/information/details' element={<InformationDetails />}></Route>
         <Route path="/accessories" element={<Accessories />}></Route>
         <Route path='/accessories/:id' element={<AccessoriesDetails />}></Route>
+        <Route path='/disease' element={<Posts />} />
+        <Route path='/roofgarden' element={<RoofGarden />} />
+        <Route path='/cultivation' element={<Cultivation />} />
+        <Route path='/agriculture' element={<Agriculture />} />
+        <Route path='/agriinformation' element={<AgriInformation />} />
 
         {/* cart will be protected route */}
 
@@ -258,6 +271,61 @@ function App() {
             </ProtectedRoute>
           }
         ></Route>
+
+        {/* route for video  */}
+
+        <Route
+          path="/admin/video/new"
+          element={
+            <ProtectedRoute
+              isAuthenticated={isAuthenticated}
+              adminRoute={true}
+              isAdmin={user?.role === "admin" ? true : false}
+            >
+              <NewVideo />
+            </ProtectedRoute>
+          }
+        ></Route>
+
+        <Route
+          path="/admin/videos"
+          element={
+            <ProtectedRoute
+              isAuthenticated={isAuthenticated}
+              adminRoute={true}
+              isAdmin={user?.role === "admin" ? true : false}
+            >
+              <VideoList />
+            </ProtectedRoute>
+          }
+        ></Route>
+
+        {/* all message  */}
+        <Route
+          path="/admin/message"
+          element={
+            <ProtectedRoute
+              isAuthenticated={isAuthenticated}
+              adminRoute={true}
+              isAdmin={user?.role === "admin" ? true : false}
+            >
+              <Message />
+            </ProtectedRoute>
+          }
+        ></Route>
+        <Route
+          path="/message/:id"
+          element={
+            <ProtectedRoute
+              isAuthenticated={isAuthenticated}
+              adminRoute={true}
+              isAdmin={user?.role === "admin" ? true : false}
+            >
+              <MessageDetails />
+            </ProtectedRoute>
+          }
+        ></Route>
+
       </Routes>
       <Footer />
     </Fragment >
