@@ -54,7 +54,7 @@ const Shipping = () => {
                             value={address}
                             onChange={(e) => setAddress(e.target.value)}
                             className="input input-bordered input-secondary w-96"
-                            style={{ outline: 'none' }}
+                            style={{ outline: 'none',color:'black' }}
                         />
                     </div>
                     <div>
@@ -66,7 +66,7 @@ const Shipping = () => {
                             value={city}
                             onChange={(e) => setCity(e.target.value)}
                             className="input input-bordered input-secondary w-96"
-                            style={{ outline: 'none' }}
+                            style={{ outline: 'none',color:"#1c1c1c" }}
                         />
                     </div>
                     <div>
@@ -78,7 +78,7 @@ const Shipping = () => {
                             value={pinCode}
                             onChange={(e) => setPinCode(e.target.value)}
                             className="input input-bordered input-secondary w-96"
-                            style={{ outline: 'none' }}
+                            style={{ outline: 'none',color:"#1c1c1c" }}
                         />
                     </div>
                     <div>
@@ -90,7 +90,7 @@ const Shipping = () => {
                             value={phoneNumber}
                             onChange={(e) => setPhoneNumber(e.target.value)}
                             className="input input-bordered input-secondary w-96"
-                            style={{ outline: 'none' }}
+                            style={{ outline: 'none',color:"#1c1c1c" }}
                         />
                     </div>
                     <div>
@@ -100,13 +100,14 @@ const Shipping = () => {
                             value={country}
                             onChange={(e) => setCountry(e.target.value)}
                             className="input input-bordered input-secondary w-96"
+                            style={{ color:"#1c1c1c"}}
 
                         >
                             <option value=""> Country </option>
                             {
                                 Country &&
                                 Country.getAllCountries().map((item) => (
-                                    <option key={item?.isoCode} value={item?.isoCode}> {item?.name} </option>
+                                    <option key={item?.isoCode} value={item?.isoCode} style={{color:"#1c1c1c" }}> {item?.name} </option>
                                 ))
                             }
                         </select>
@@ -120,6 +121,7 @@ const Shipping = () => {
                                     value={state}
                                     onChange={(e) => setState(e.target.value)}
                                     className="input input-bordered input-secondary w-96"
+                                    style={{ color:"#1c1c1c"}}
 
                                 >
                                     <option value="">State</option>
@@ -139,6 +141,7 @@ const Shipping = () => {
                             className="btn btn-primary text-white w-96 ml-16"
                             disabled={state ? false : true}
                             value="Continue"
+                            style={{ color: "white" }}
                         />
                     </div>
                 </form>
