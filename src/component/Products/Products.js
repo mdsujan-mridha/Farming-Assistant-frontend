@@ -39,7 +39,6 @@ const Products = () => {
 
     // set price 
     const handlePriceChange = (e, newPrice) => {
-
         setPrice(newPrice);
     }
 
@@ -66,8 +65,9 @@ const Products = () => {
     useEffect(() => {
 
         if (error) {
-            dispatch(clearErrors);
+
             toast.error(error, 'You got some error');
+            dispatch(clearErrors);
         }
 
         dispatch(getAllProduct(price, currentPage, category))
