@@ -8,6 +8,7 @@ import { Suspense } from 'react';
 import lazyLoadedHeroOne from "../images/hero-1.jpg";
 import lazyLoadedHeroTwo from "../images/hero-2.jpg";
 import lazyLoadedHeroThree from "../images/hero-3.jpg";
+import { Link } from "react-router-dom"
 // Lazy load the images
 // const lazyLoadedHeroOne = lazy(() => import("../images/hero-1.jpg"));
 // const lazyLoadedHeroTwo = lazy(() => import("../images/hero-2.jpg"));
@@ -43,22 +44,23 @@ const Hero = () => {
             }}
             loop={true}
             modules={[Navigation, Pagination, Autoplay]}
-        // className='container'
+            // className='container'
+            style={{ zIndex: 99 }}
         >
             {
                 heroItem.map((item) => (
-                    <SwiperSlide key={item?.id}>
+                    <SwiperSlide key={item?.id} style={{ zIndex: 99 }}>
                         <Suspense fallback={<div> Loading... </div>}>
-                            <div className="hero" style={{ backgroundImage: `url("${item?.image}")`, height: "70vh", backgroundPosition: "center center", backgroundRepeat: "no-repeat", backgroundOrigin: 'content-box', objectFit: 'cover', backgroundSize: 'cover' }}>
+                            <div className="hero" style={{ backgroundImage: `url("${item?.image}")`, height: "70vh", backgroundPosition: "center center", backgroundRepeat: "no-repeat", backgroundOrigin: 'content-box', objectFit: 'cover', backgroundSize: 'cover', zIndex: 99 }} >
 
-                                <div className="hero-overlay bg-opacity-70" ></div>
+                                <div className="hero-overlay bg-opacity-20" ></div>
                                 <div className="hero-content text-center text-neutral-content">
                                     <div className="">
                                         <h1 className="text-5xl font-bold text-white mb-5"> {item?.title} </h1>
                                         <p className="mb-5 text-lg font-bold text-gray-300">Welcome to the Agrifutures <br />
                                             where you can purchase products from fresh farms all over Bangladesh
                                         </p>
-                                        <button className="btn btn-primary">Get Started</button>
+                                        <Link to="/login" className="btn btn-primary">Get Started</Link>
                                     </div>
                                 </div>
                             </div>

@@ -82,7 +82,7 @@ const ConfirmOrder = () => {
                     <div className="border-t-2 border-gray-800">
                         <div className='flex justify-between items-center px-12 pt-5 text-xl font-bold'> <p> Total </p> <span> {totalPrice} </span> </div>
                     </div>
-                    <button className='btn btn-primary text-white font-bold text-xl' onClick={proceedToPayment}> Proceed To payment </button>
+                    <button className='btn btn-secondary text-white font-bold text-xl' onClick={proceedToPayment}> Proceed To payment </button>
                 </div>
             </div>
         </Fragment>

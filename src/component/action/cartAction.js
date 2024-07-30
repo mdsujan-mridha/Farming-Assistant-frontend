@@ -8,7 +8,7 @@ import {
 
 export const addItemToCart = (productId, quantity) => async (dispatch, getState) => {
 
-    const { data } = await axios.get(`http://localhost:5000/api/v1/product/${productId}`)
+    const { data } = await axios.get(`https://farming-assistant-backend.vercel.app/api/v1/product/${productId}`)
 
     dispatch({
         type: ADD_TO_CART,

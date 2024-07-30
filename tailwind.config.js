@@ -3,7 +3,7 @@ module.exports = {
   content: [
     "./src/**/*.{js,jsx,ts,tsx}",
   ],
- 
+
   theme: {
     extend: {},
   },
@@ -11,10 +11,10 @@ module.exports = {
     themes: [
       {
         mytheme: {
-          "primary": "#609B00",
-          "secondary": "#1c1c1c",
+          "primary": " #212f3d",
+          "secondary": " #2e4053 ",
           "accent": "#fff",
-          "neutral": "#3d4451",
+          "neutral": "#7f8c8d ",
           "base-100": "#ffffff",
         },
       },
