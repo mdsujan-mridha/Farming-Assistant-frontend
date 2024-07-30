@@ -42,7 +42,7 @@ export const login = (email, password) => async (dispatch) => {
                 "Content-type": "application/json"
             }
         }
-        const { data } = await axios.post(`http://localhost:5000/api/v1/login`, { email, password }, config)
+        const { data } = await axios.post(`https://farming-assistant-backend.vercel.app/api/v1/login`, { email, password }, config)
         dispatch({
             type: LOGIN_SUCCESS,
             payload: data.user,
@@ -66,7 +66,7 @@ export const register = (userData) => async (dispatch) => {
                 "Content-type": "application/json"
             }
         }
-        const { data } = await axios.post(`http://localhost:5000/api/v1/register`, userData, config)
+        const { data } = await axios.post(`https://farming-assistant-backend.vercel.app/api/v1/register`, userData, config)
         dispatch({
             type: REGISTER_SUCCESS,
             payload: data.user,
@@ -84,7 +84,7 @@ export const register = (userData) => async (dispatch) => {
 export const loadUser = () => async (dispatch) => {
     try {
         dispatch({ type: LOAD_USER_REQUEST })
-        const { data } = await axios.get(`http://localhost:5000/api/v1/me`)
+        const { data } = await axios.get(`https://farming-assistant-backend.vercel.app/api/v1/me`)
         dispatch({
             type: LOAD_USER_SUCCESS,
             payload: data.user,
@@ -102,7 +102,7 @@ export const loadUser = () => async (dispatch) => {
 export const logout = () => async (dispatch) => {
 
     try {
-        await axios.get(`http://localhost:5000/api/v1/logout`);
+        await axios.get(`https://farming-assistant-backend.vercel.app/api/v1/logout`);
         dispatch({
             type: LOGOUT_SUCCESS,
         })
@@ -119,7 +119,7 @@ export const getAllUser = () => async (dispatch) => {
     try {
         dispatch({ type: ALL_USERS_REQUEST })
 
-        const { data } = await axios.get(`http://localhost:5000/api/v1/admin/users`);
+        const { data } = await axios.get(`https://farming-assistant-backend.vercel.app/api/v1/admin/users`);
 
         dispatch({
             type: ALL_USERS_SUCCESS,
@@ -141,7 +141,7 @@ export const deleteUser = (id) => async (dispatch) => {
     try {
 
         dispatch({ type: DELETE_USER_REQUEST })
-        const { data } = await axios.delete(`http://localhost:5000/api/v1/admin/user/${id}`);
+        const { data } = await axios.delete(`https://farming-assistant-backend.vercel.app/api/v1/admin/user/${id}`);
 
         dispatch({
             type: DELETE_USER_SUCCESS,
@@ -163,7 +163,7 @@ export const updateUser = (id, userData) => async (dispatch) => {
 
         //   const config = { headers: { "Content-Type": "application/json" } };
 
-        const { data } = await axios.put(`http://localhost:5000/api/v1/admin/user/${id}`, userData,);
+        const { data } = await axios.put(`https://farming-assistant-backend.vercel.app/api/v1/admin/user/${id}`, userData,);
 
         dispatch({ type: UPDATE_USER_SUCCESS, payload: data.success });
     } catch (error) {
@@ -177,7 +177,7 @@ export const updateUser = (id, userData) => async (dispatch) => {
 export const getUserDetails = (id) => async (dispatch) => {
     try {
         dispatch({ type: USER_DETAILS_REQUEST });
-        const { data } = await axios.get(`http://localhost:5000/api/v1/admin/user/${id}`);
+        const { data } = await axios.get(`https://farming-assistant-backend.vercel.app/api/v1/admin/user/${id}`);
 
         dispatch({ type: USER_DETAILS_SUCCESS, payload: data.user });
     } catch (error) {
@@ -190,7 +190,7 @@ export const updateProfile = (myForm) => async (dispatch) => {
         dispatch({ type: UPDATE_PROFILE_REQUEST })
         const config = { headers: { "Content-Type": "multipart/form-data" } };
 
-        const data = await axios.put(`http://localhost:5000/api/v1/update-profile`, myForm, config);
+        const data = await axios.put(`https://farming-assistant-backend.vercel.app/api/v1/update-profile`, myForm, config);
         console.log(data);
         dispatch({
             type: UPDATE_PROFILE_SUCCESS,
@@ -212,7 +212,7 @@ export const updatePassword = (password) => async (dispatch) => {
 
         const config = { headers: { "Content-type": "application/json" } };
         const { data } = await axios.put(
-            `http://localhost:5000/api/v1/update-password`,
+            `https://farming-assistant-backend.vercel.app/api/v1/update-password`,
             password,
             config
         );

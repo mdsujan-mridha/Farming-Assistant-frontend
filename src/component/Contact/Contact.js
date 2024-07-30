@@ -38,7 +38,7 @@ const Contact = () => {
     };
     const sentMessage = async () => {
         try {
-            const response = await axios.post('http://localhost:5000/api/v1/new/message', formData);
+            const response = await axios.post('https://farming-assistant-backend.vercel.app/api/v1/new/message', formData);
             console.log('Message sent successfully:', response.data);
             if (response.data.success === true) {
                 toast.success('Message sent successfully')

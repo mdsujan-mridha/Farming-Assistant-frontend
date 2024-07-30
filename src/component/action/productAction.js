@@ -38,9 +38,9 @@ export const getAllProduct = (price = [0, 25000], currentPage = 1, category) => 
         dispatch({
             type: ALL_PRODUCT_REQUEST
         })
-        let link = `http://localhost:5000/api/v1/products?price[gte]=${price[0]}&price[lte]=${price[1]}&page=${currentPage}`;
+        let link = `https://farming-assistant-backend.vercel.app/api/v1/products?price[gte]=${price[0]}&price[lte]=${price[1]}&page=${currentPage}`;
         if (category) {
-            link = `http://localhost:5000/api/v1/products?price[gte]=${price[0]}&price[lte]=${price[1]}&page=${currentPage}&category=${category}`;
+            link = `https://farming-assistant-backend.vercel.app/api/v1/products?price[gte]=${price[0]}&price[lte]=${price[1]}&page=${currentPage}&category=${category}`;
         }
 
         const { data } = await axios.get(link);
@@ -65,7 +65,7 @@ export const productDetails = (productId) => async (dispatch) => {
     try {
         dispatch({ type: PRODUCT_DETAILS_REQUEST })
 
-        const { data } = await axios.get(`http://localhost:5000/api/v1/product/${productId}`);
+        const { data } = await axios.get(`https://farming-assistant-backend.vercel.app/api/v1/product/${productId}`);
         dispatch({
             type: PRODUCT_DETAILS_SUCCESS,
             payload: data.product
@@ -86,7 +86,7 @@ export const getAdminProduct = () => async (dispatch) => {
 
     try {
         dispatch({ type: ADMIN_PRODUCT_REQUEST })
-        const { data } = await axios.get(`http://localhost:5000/api/v1/admin/products`)
+        const { data } = await axios.get(`https://farming-assistant-backend.vercel.app/api/v1/admin/products`)
         dispatch({
             type: ADMIN_PRODUCT_SUCCESS,
             payload: data.products,
@@ -104,7 +104,7 @@ export const getAdminProduct = () => async (dispatch) => {
 export const updateProduct = (id, productData) => async (dispatch) => {
     try {
         dispatch({ type: UPDATE_PRODUCT_REQUEST })
-        const { data } = await axios.put(`http://localhost:5000/api/v1/admin/product/${id}`, productData)
+        const { data } = await axios.put(`https://farming-assistant-backend.vercel.app/api/v1/admin/product/${id}`, productData)
         dispatch({
             type: UPDATE_PRODUCT_SUCCESS,
             payload: data.success,
@@ -120,7 +120,7 @@ export const updateProduct = (id, productData) => async (dispatch) => {
 export const deleteProduct = (id) => async (dispatch) => {
     try {
         dispatch({ type: DELETE_PRODUCT_REQUEST })
-        const { data } = await axios.delete(`http://localhost:5000/api/v1/admin/product/${id}`)
+        const { data } = await axios.delete(`https://farming-assistant-backend.vercel.app/api/v1/admin/product/${id}`)
         dispatch({
             type: DELETE_PRODUCT_SUCCESS,
             payload: data.success,
@@ -143,7 +143,7 @@ export const createProduct = (productData) => async (dispatch) => {
         //         "Content-type":"application/json"
         //     }
         //   }
-        const data = await axios.post(`http://localhost:5000/api/v1/product/new`, productData)
+        const data = await axios.post(`https://farming-assistant-backend.vercel.app/api/v1/product/new`, productData)
         dispatch({
             type: NEW_PRODUCT_SUCCESS,
             payload: data
@@ -168,7 +168,7 @@ export const newReview = (reviewData) => async (dispatch) => {
         // const config = {
         //     headers: { "Content-Type": "application/json" }
         // };
-        const { data } = await axios.put(`http://localhost:5000/api/v1/review`, reviewData);
+        const { data } = await axios.put(`https://farming-assistant-backend.vercel.app/api/v1/review`, reviewData);
         dispatch({
             type: NEW_REVIEW_SUCCESS,
             payload: data.success
@@ -186,7 +186,7 @@ export const newReview = (reviewData) => async (dispatch) => {
 export const getAllReviews = (id) => async (dispatch) => {
     try {
         dispatch({ type: ALL_REVIEW_REQUEST })
-        const { data } = await axios.get(`http://localhost:5000/api/v1/reviews?id=${id}`)
+        const { data } = await axios.get(`https://farming-assistant-backend.vercel.app/api/v1/reviews?id=${id}`)
         dispatch({
             type: ALL_REVIEW_SUCCESS,
             payload: data.reviews,
@@ -205,7 +205,7 @@ export const deleteReviews = (reviewId, productId) => async (dispatch) => {
         dispatch({ type: DELETE_REVIEW_REQUEST });
 
         const { data } = await axios.delete(
-            `http://localhost:5000/api/v1/reviews?id=${reviewId}&productId=${productId}`
+            `https://farming-assistant-backend.vercel.app/api/v1/reviews?id=${reviewId}&productId=${productId}`
         );
 
         dispatch({

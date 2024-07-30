@@ -13,7 +13,7 @@ const MessageDetails = () => {
 
     useEffect(() => {
 
-        fetch(`http://localhost:5000/api/v1/message/${messageId.id}`)
+        fetch(`https://farming-assistant-backend.vercel.app/api/v1/message/${messageId.id}`)
             .then(res => res.json())
             .then(data => setMessage(data.message))
 

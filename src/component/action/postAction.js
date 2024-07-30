@@ -25,10 +25,10 @@ export const getPost = (currentPage = 1, category) => async (dispatch) => {
     try {
         dispatch({ type: ALL_POST_REQUEST });
 
-        let link = `http://localhost:5000/api/v1/posts?page=${currentPage}`;
+        let link = `https://farming-assistant-backend.vercel.app/api/v1/posts?page=${currentPage}`;
 
         if (category) {
-            link = `http://localhost:5000/api/v1/posts?page=${currentPage}&category=${category}`;
+            link = `https://farming-assistant-backend.vercel.app/api/v1/posts?page=${currentPage}&category=${category}`;
         }
 
         const { data } = await axios.get(link);
@@ -50,7 +50,7 @@ export const getPost = (currentPage = 1, category) => async (dispatch) => {
 export const getPostDetails = (id) => async (dispatch) => {
     try {
         dispatch({ type: POST_DETAILS_REQUEST });
-        const { data } = await axios.get(`http://localhost:5000/api/v1/post/${id}`);
+        const { data } = await axios.get(`https://farming-assistant-backend.vercel.app/api/v1/post/${id}`);
         // console.log(data.post);
 
         dispatch({
@@ -73,7 +73,7 @@ export const getAdminPost = () => async (dispatch) => {
 
     try {
         dispatch({ type: ADMIN_POST_REQUEST })
-        const { data } = await axios.get(`http://localhost:5000/api/v1/admin/posts`)
+        const { data } = await axios.get(`https://farming-assistant-backend.vercel.app/api/v1/admin/posts`)
         dispatch({
             type: ADMIN_POST_SUCCESS,
             payload: data.posts,
@@ -94,7 +94,7 @@ export const deletePost = (id) => async (dispatch) => {
         dispatch({
             type: DELETE_POST_REQUEST
         })
-        const { data } = await axios.delete(`http://localhost:5000/api/v1/admin/post/${id}`)
+        const { data } = await axios.delete(`https://farming-assistant-backend.vercel.app/api/v1/admin/post/${id}`)
         dispatch({
             type: DELETE_POST_SUCCESS,
             payload: data.success
@@ -120,7 +120,7 @@ export const createPost = (productData) => async (dispatch) => {
                 "Content-type":"application/json"
             }
           }
-        const data = await axios.post(`http://localhost:5000/api/v1/admin/post/new`, productData,config)
+        const data = await axios.post(`https://farming-assistant-backend.vercel.app/api/v1/admin/post/new`, productData,config)
         dispatch({
             type: NEW_POST_SUCCESS,
             payload: data
@@ -136,7 +136,7 @@ export const createPost = (productData) => async (dispatch) => {
 export const updatePost = (id, productData) => async (dispatch) => {
     try {
         dispatch({ type: UPDATE_POST_REQUEST })
-        const { data } = await axios.put(`http://localhost:5000/api/v1/admin/post/${id}`, productData)
+        const { data } = await axios.put(`https://farming-assistant-backend.vercel.app/api/v1/admin/post/${id}`, productData)
         dispatch({
             type: UPDATE_POST_SUCCESS,
             payload: data.success,

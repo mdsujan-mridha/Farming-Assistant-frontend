@@ -22,7 +22,7 @@ export const getAllVideo = () => async (dispatch) => {
         dispatch({
             type: ALL_VIDEO_REQUEST
         })
-        const { data } = await axios.get(`http://localhost:5000/api/v1/videos`)
+        const { data } = await axios.get(`https://farming-assistant-backend.vercel.app/api/v1/videos`)
         dispatch({
             type: ALL_VIDEO_SUCCESS,
             payload: data.videos
@@ -52,7 +52,7 @@ export const createVideo = (videoData) => async (dispatch) => {
         //         "Content-type":"application/json"
         //     }
         //   }
-        const data = await axios.post(`http://localhost:5000/api/v1/video/new`, videoData)
+        const data = await axios.post(`https://farming-assistant-backend.vercel.app/api/v1/video/new`, videoData)
         dispatch({
             type: NEW_VIDEO_SUCCESS,
             payload: data
@@ -73,7 +73,7 @@ export const deleteVideo = (id) => async (dispatch) => {
         dispatch({
             type: DELETE_VIDEO_REQUEST
         })
-        const { data } = await axios.delete(`http://localhost:5000/api/v1/delete/video/${id}`)
+        const { data } = await axios.delete(`https://farming-assistant-backend.vercel.app/api/v1/delete/video/${id}`)
         dispatch({
             type: DELETE_VIDEO_SUCCESS,
             payload: data.success

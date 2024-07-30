@@ -70,7 +70,7 @@ function App() {
 
 
   async function getStripeApiKey() {
-    const { data } = await axios.get("http://localhost:5000/api/v1/stripeapikey");
+    const { data } = await axios.get("https://farming-assistant-backend.vercel.app/api/v1/stripeapikey");
     setStripeApiKey(data.stripeApiKey);
     // console.log(data.stripeApiKey);
   }

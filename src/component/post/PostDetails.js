@@ -14,7 +14,7 @@ const PostDetails = () => {
 
     useEffect(() => {
 
-        fetch(`http://localhost:5000/api/v1/post/${id}`)
+        fetch(`https://farming-assistant-backend.vercel.app/api/v1/post/${id}`)
             .then(res => res.json())
             .then(data => setPostItem(data.post))
 
